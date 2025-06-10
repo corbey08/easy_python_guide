@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Complete guide to installing Python and PIP on Windows, Mac, and Linux with command line instructions. Learn about the best free Python IDEs including VS Code and PyCham setup.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -35,7 +35,71 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Installing Python</h2>
-      <h3>Page Coming Soon</h3>
+      <h3>Checking if Python is Already Installed</h3>
+      <p>Before installing Python, you should first check if it's already installed on your system. Open your command prompt (Windows) or terminal (Mac/Linux) and type the following command:</p>
+      <pre><code>
+        python --version
+      </code></pre>
+      <p>If Python is installed, this will display the version number, such as "Python 3.11.2". On some systems, particularly Linux and Mac, you might need to use</p>
+      <pre><code>
+        python3 --version
+      </code></pre>
+      <p>instead. If you see an error message like "python is not recognised as an internal or external command" (Windows) or "command not found" (Mac/Linux), then Python is not installed or not properly added to your system's PATH.</p>
+      <h3>Checking if PIP is Installed</h3>
+      <p>PIP (Pip Installs Packages) is Python's package installer and typically comes bundled with Python installations from version 3.4 onwards. To check if PIP is installed, use this command:</p>
+      <pre><code>
+        pip --version
+      </code></pre>
+      <p>Similar to Python, you might need to use:</p>
+      <pre><code>
+        pip3 --version
+      </code></pre>
+      <p>on some systems. If PIP is installed, you'll see version information and the Python version it's associated with. If you get an error message, PIP either isn't installed or isn't in your system's PATH.</p>
+      <h3>Installing Python on Windows</h3>
+      <p>To install Python on Windows, visit the official Python website at python.org and download the latest stable version. Run the installer and make sure to check the box that says "Add Python to PATH" during installation - this is crucial for using Python from the command prompt. The installer will automatically include PIP. After installation, restart your command prompt and verify the installation using the commands mentioned above.</p>
+      <h3>Installing Python on Mac</h3>
+      <p>Mac users have several options for installing Python. The easiest method is to download the official installer from python.org. Alternatively, if you have Homebrew installed, you can use:</p>
+      <pre><code>
+        brew install python
+      </code></pre>
+      <p>Another popular option is using pyenv for managing multiple Python versions:</p>
+      <pre><code>
+        brew install pyenv<br>pyenv install 3.11.2<br>pyenv global 3.11.2
+      </code></pre>
+      <p>After installation, you may need to add Python to your PATH by editing your shell profile file (.bash_profile, .zshrc, etc.).</p>
+      <h3>Installing Python on Linux</h3>
+      <p>Most Linux distributions come with Python pre-installed, but it might be an older version. To install the latest Python on Ubuntu or Debian-based systems, use:</p>
+      <pre><code>
+        sudo apt update<br>sudo apt install python3 python3-pip
+      </code></pre>
+      <p>For Red Hat, CentOS, or Fedora systems:</p>
+      <pre><code>
+        sudo yum install python3 python3-pip
+      </code></pre>
+      <p>Or for newer Fedora versions:</p>
+      <pre><code>
+        sudo dnf install python3 python3-pip
+      </code></pre>
+      <h3>Installing PIP Separately</h3>
+      <p>If Python is installed but PIP is missing, you can install PIP separately. Download get-pip.py from the official PIP installation page, then run:</p>
+      <pre><code>
+        python get-pip.py
+      </code></pre>
+      <p>On Linux or Mac, you might need to use:</p>
+      <pre><code>
+        python3 get-pip.py
+      </code></pre>
+      <p>Alternatively, on Linux systems, you can often install PIP using your package manager as shown in the previous section.</p>
+      <h3>What is an IDE and Why Use One?</h3>
+      <p>An IDE (Integrated Development Environment) is a software application that provides comprehensive facilities for software development. An IDE typically includes a code editor with syntax highlighting, debugging tools, project management features, and integration with version control systems. While you can write Python code in any text editor, an IDE makes programming much more efficient by providing features like auto-completion, error detection, code formatting, and the ability to run and debug your programs directly within the interface.</p>
+      <h3>Best Free Python IDEs</h3>
+      <p>Several excellent free IDEs are available for Python development. Visual Studio Code (VS Code) is arguably the most popular choice, offering excellent Python support through extensions, integrated terminal, debugging capabilities, and Git integration. VS Code is not limited to Python, so you can use the same IDE to code projects in various languages. PyCharm Community Edition is a powerful IDE specifically designed for Python, featuring intelligent code completion, debugging, and testing tools. IDLE comes bundled with Python and provides a simple environment perfect for beginners. Thonny is another beginner-friendly IDE with a clean interface and built-in debugger that visualises code execution.</p>
+      <h3>Setting Up Your IDE for Python</h3>
+      <p>To set up VS Code for Python, install the Python extension from the Extensions marketplace, which provides syntax highlighting, IntelliSense, debugging, and formatting. For PyCharm, simply download and install the Community Edition, and it will automatically detect your Python installation. Most IDEs will allow you to configure which Python interpreter to use, which is important if you have multiple Python versions installed. You can usually find this setting in the IDE's preferences or project settings, where you can specify the path to your Python executable.</p>
+      <h4>
+        <a href="../pages/python_use.html">◄ What is Python Used For?</a> | 
+        <a href="../pages/data_types.html">Basic and Compund Data Types ►</a>      
+      </h4>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
