@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python integers for beginners: data types, real-world examples, and practical coding applications. Complete guide with code samples.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -35,7 +36,61 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Integers</h2>
-      <h3>Page Coming Soon</h3>
+      <p>In Python programming, an integer (or "int" for short) is a fundamental data type that represents whole numbers without any decimal points. These can be positive numbers like 42, negative numbers like -17, or zero itself. Unlike some other programming languages, Python integers can be arbitrarily large, meaning you can work with enormous numbers without worrying about overflow errors. When you type a number like 100 or -50 into your Python code, the interpreter automatically recognises it as an integer data type. This makes Python particularly beginner-friendly, as you don't need to explicitly declare that a variable should hold an integer value.</p>
+      <p>Integers are incredibly versatile in programming and serve as the foundation for many operations. You can perform standard mathematical operations with them, such as addition, subtraction, multiplication, and division. They're also essential for counting operations, indexing (accessing specific items in lists or strings), and controlling loops that repeat a certain number of times. Python integers support comparison operations too, allowing you to check if one number is greater than, less than, or equal to another. Additionally, integers can be used in logical operations and converted to other data types when needed, making them a crucial building block in Python programming.</p>
+      <p>In real-world job scenarios, integers are absolutely everywhere in software development. Web developers use integers to track user IDs, count page views, manage shopping cart quantities, and handle pagination (showing 10 results per page, for example). When you're browsing an online shop and see "23 items in stock" or "Page 3 of 15", those numbers are likely stored and manipulated as integers in the background. E-commerce platforms rely heavily on integers for processing orders, calculating totals, and managing inventory levels.</p>
+      <p>Data analysts and scientists use integers extensively for statistical analysis and research. They might use integers to count survey responses, track the number of patients in a medical study, or represent categorical data with numerical codes. For instance, in a customer satisfaction survey, responses might be coded as integers: 1 for "very dissatisfied", 2 for "dissatisfied", and so on up to 5 for "very satisfied". Financial analysts use integers to count transactions, track account numbers, and calculate quantities of shares or units. Even in fields like digital marketing, integers are used to count clicks, impressions, and conversion rates.
+      <p>Game developers, mobile app creators, and software engineers across various industries rely on integers for countless applications. In gaming, integers track player scores, lives remaining, experience points, and game levels. Mobile app developers use integers to count notifications, track app usage statistics, and manage user preferences. System administrators use integers to monitor server performance metrics, count logged events, and manage user permissions. Even in emerging fields like machine learning, integers are used to count training iterations, track model accuracy percentages, and manage dataset sizes. The ubiquity of integers in programming reflects their fundamental importance in representing and manipulating the numerical aspects of virtually any digital system or application.<p>
+      <h3>Syntax</h3>
+      <p>Some examples some common operations which can be performed on integers:</p>
+      <pre><code class="language-python">
+# Define two integers using variables
+a = 15
+b = 4
+
+# Addition: adds the two numbers
+add_result = a + b  # 15 + 4 = 19
+
+# Subtraction: subtracts the second number from the first
+sub_result = a - b  # 15 - 4 = 11
+
+# Multiplication: multiplies the two numbers
+mul_result = a * b  # 15 * 4 = 60
+
+# Division: divides the first number by the second (result is a floating point number)
+div_result = a / b  # 15 / 4 = 3.75
+
+# Floor Division: divides and rounds down to the nearest whole number
+floor_div_result = a // b  # 15 // 4 = 3
+
+# Modulo: returns the remainder after division
+mod_result = a % b  # 15 % 4 = 3
+
+# Exponentiation: raises the first number to the power of the second
+exp_result = a ** b  # 15 ** 4 = 50625
+
+# Unary minus: negates the number
+neg_result = -a  # -15
+
+# Absolute value: returns the positive version of a number
+abs_result = abs(-a)  # abs(-15) = 15
+
+# Print all results
+print("Addition:", add_result)
+print("Subtraction:", sub_result)
+print("Multiplication:", mul_result)
+print("Division:", div_result)
+print("Floor Division:", floor_div_result)
+print("Modulo:", mod_result)
+print("Exponentiation:", exp_result)
+print("Unary minus:", neg_result)
+print("Absolute value:", abs_result)
+      </code></pre>
+      <h4>
+        <a href="../pages/data_types.html">◄ Basic and Compund Data Types</a> | 
+        <a href="../pages/floating_point.html">Floating Point Numbers ►</a>      
+      </h4>
+    </div>    
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -45,5 +100,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
