@@ -35,7 +35,62 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Floating Point Numbers</h2>
-      <h3>Page Coming Soon</h3>
+      <p>Floating point numbers are a way computers represent decimal numbers with fractional parts, like 3.14159 or 0.000042. In Python, these are called float types and follow the IEEE 754 standard for double-precision floating point arithmetic. Unlike integers which represent whole numbers exactly, floats use a system similar to scientific notation to approximate decimal values within a certain range of precision. This means they can represent very large numbers (like 1.2e+100) or very small numbers (like 3.4e-50), but they may not always be perfectly precise due to the limitations of binary representation.</p>
+      <p>The internal structure of floating point numbers consists of three parts: a sign bit, an exponent, and a mantissa (or significand). This allows them to represent a wide range of values efficiently, but introduces some quirks that programmers need to understand. For example, simple decimal numbers like 0.1 cannot be represented exactly in binary floating point, which can lead to unexpected results when performing arithmetic operations. This is why comparing floats for exact equality is generally discouraged in favour of checking if they're within a small tolerance of each other.</p>
+      <p>In financial technology, floating point numbers are extensively used for currency calculations, stock prices, and interest rate computations. Investment firms use floats to track portfolio values, calculate compound interest, and perform risk analysis across thousands of assets simultaneously. However, financial applications often require special handling to avoid rounding errors that could accumulate over millions of transactions, sometimes using specialised decimal types instead of standard floats for critical monetary calculations.</p>
+      <p>Scientific computing and data analysis rely heavily on floating point arithmetic for processing experimental data, statistical analysis, and mathematical modeling. Research scientists use floats to represent measurements like temperature readings, distances between celestial objects, or molecular concentrations. Climate researchers might use floating point arrays to store decades of temperature data from weather stations worldwide, while physicists use them to model particle interactions or gravitational wave detections where extreme precision across vast scales is essential.</p>
+      <p>Engineering and graphics applications make extensive use of floating point numbers for computer-aided design, 3D rendering, and simulation work. Video game developers use floats to track character positions, calculate physics interactions, and render realistic lighting effects. Aerospace engineers rely on floating point calculations for trajectory planning, fuel consumption optimisation, and structural stress analysis. Even everyday applications like GPS navigation systems use floating point arithmetic to calculate distances, determine optimal routes, and convert between different coordinate systems with the precision needed for accurate positioning.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of some common operations which can be performed on floats:</p>
+      <pre><code class="language-python">
+# Define two floats using variables
+a = 15.5
+b = 4.2
+
+# Addition: adds the two floating point numbers
+add_result = a + b  # 15.5 + 4.2 = 19.7
+print("Addition:", add_result)
+
+# Subtraction: subtracts the second float from the first
+sub_result = a - b  # 15.5 - 4.2 = 11.3
+print("Subtraction:", sub_result)
+
+# Multiplication: multiplies the two floating point numbers
+mul_result = a * b  # 15.5 * 4.2 = 65.1
+print("Multiplication:", mul_result)
+
+# Division: divides the first float by the second
+div_result = a / b  # 15.5 / 4.2 ≈ 3.690476190476191
+print("Division:", div_result)
+
+# Floor Division: divides and rounds down to the nearest whole number
+floor_div_result = a // b  # 15.5 // 4.2 = 3.0
+print("Floor Division:", floor_div_result)
+
+# Modulo: returns the remainder after division
+mod_result = a % b  # 15.5 % 4.2 ≈ 2.9000000000000004
+print("Modulo:", mod_result)
+
+# Exponentiation: raises the first float to the power of the second
+exp_result = a ** b  # 15.5 ** 4.2 ≈ 158102.35965
+print("Exponentiation:", exp_result)
+
+# Unary minus: negates the floating point number
+neg_result = -a  # -15.5
+print("Unary minus:", neg_result)
+
+# Absolute value: returns the positive version of a floating point number
+abs_result = abs(-a)  # abs(-15.5) = 15.5
+print("Absolute value:", abs_result)
+
+# Round: rounds the float to a specified number of decimal places
+round_result = round(div_result, 2)  # round(3.690476190476191, 2) = 3.69
+print("Round to 2 decimals:", round_result)  
+      </code></pre>
+      <h4>
+        <a href ="../pages/integers.html">◄ Integers</a> |
+        <a href="../pages/strings.html">Strings ►</a>
+      </h4>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -45,5 +100,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
