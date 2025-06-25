@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python string methods with 10 practical examples. Master text manipulation, concatenation, and formatting for web development and data analysis jobs.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -35,7 +36,64 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Strings</h2>
-      <h3>Page Coming Soon</h3>
+      <p>Python strings are one of the fundamental data types in programming, representing sequences of characters such as letters, numbers, symbols, and spaces. In Python, strings are created by enclosing text within either single quotes ('') or double quotes (""). For example, "Hello World" or 'Python programming' are both valid strings. Strings are immutable in Python, which means once you create a string, you cannot change its individual characters directly. Instead, any operations that appear to modify a string actually create a new string object. This might seem restrictive at first, but it ensures data integrity and makes strings safer to work with in larger programs.</p>
+      <p>Working with strings involves numerous built-in methods that allow you to manipulate and analyse text data effectively. Common operations include concatenation (joining strings together using the + operator), slicing (extracting portions of a string using square brackets), and formatting (inserting variables into strings). For instance, you might concatenate a first name and surname like this: full_name = "John" + " " + "Smith". Python also provides powerful methods such as .upper() to convert text to uppercase, .lower() for lowercase, .split() to break strings into lists, and .replace() to substitute characters or words. These methods make it straightforward to clean, process, and transform text data according to your specific requirements.</p>
+      <p>In web development roles, Python strings are absolutely essential for creating dynamic websites and handling user input. Web developers frequently use strings to generate HTML content, process form submissions, and manage URL routing. For example, when a user submits a contact form on a website, the developer needs to validate and process the submitted text fields using string methods. E-commerce websites rely heavily on string manipulation for product descriptions, customer reviews, and search functionality. Additionally, web developers use string formatting to create personalised content, such as greeting users by name or displaying customised product recommendations based on their browsing history.</p>
+      <p>Data analysts and scientists work extensively with strings when cleaning and preparing datasets for analysis. Real-world data often contains inconsistent formatting, spelling variations, and mixed case text that requires standardisation before meaningful analysis can occur. For instance, a dataset containing customer feedback might have entries like "EXCELLENT", "excellent", and "Excellent" that all need to be treated as the same value. Data professionals use string methods to normalise this data, extract relevant information from unstructured text, and categorise responses. They also work with strings when parsing log files, processing social media data, or extracting insights from customer support tickets, where pattern recognition and text analysis are crucial for identifying trends and problems.</p>
+      <p>Marketing professionals and content managers increasingly rely on Python strings for automation and personalisation tasks. They use string manipulation to create personalised email campaigns, where customer names, purchase history, or location data are inserted into template messages. Social media managers employ string processing to analyse hashtags, mentions, and engagement metrics across different platforms. Additionally, SEO specialists use strings to analyse website content, generate meta descriptions, and process keyword data. In customer service roles, strings are vital for chatbot development, automated response systems, and analysing customer inquiry patterns to improve service delivery. These applications demonstrate how string manipulation has become an essential skill across numerous industries beyond traditional programming roles.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of some common operations which can be performed on floats:</p>
+      <pre><code class="language-python">
+# Define two strings using variables
+text1 = "Hello World"
+text2 = "python programming"
+
+# Concatenation: joins two strings together
+concat_result = text1 + " " + text2  # "Hello World python programming"
+print("Concatenation:", concat_result)
+
+# Upper: converts all characters to uppercase
+upper_result = text2.upper()  # "PYTHON PROGRAMMING"
+print("Upper case:", upper_result)
+
+# Lower: converts all characters to lowercase
+lower_result = text1.lower()  # "hello world"
+print("Lower case:", lower_result)
+
+# Title: capitalises the first letter of each word
+title_result = text2.title()  # "Python Programming"
+print("Title case:", title_result)
+
+# Replace: substitutes specified characters or substrings
+replace_result = text1.replace("World", "Python")  # "Hello Python"
+print("Replace:", replace_result)
+
+# Split: breaks a string into a list based on a delimiter
+split_result = text1.split(" ")  # ["Hello", "World"]
+print("Split:", split_result)
+
+# Strip: removes whitespace from both ends of a string
+whitespace_text = "  extra spaces  "
+strip_result = whitespace_text.strip()  # "extra spaces"
+print("Strip whitespace:", strip_result)
+
+# Find: returns the index of the first occurrence of a substring
+find_result = text1.find("World")  # 6 (index where "World" starts)
+print("Find 'World':", find_result)
+
+# Length: returns the number of characters in a string
+len_result = len(text1)  # 11 characters
+print("Length:", len_result)
+
+# Slice: extracts a portion of the string using indexing
+slice_result = text1[0:5]  # "Hello" (characters from index 0 to 4)
+print("Slice [0:5]:", slice_result)
+      </code></pre>
+      <h4>
+        <a href="../pages/floating_point.html">◄ Floating Point Numbers</a> | 
+        <a href="../pages/booleans.html">Booleans ►</a>      
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -45,5 +103,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
