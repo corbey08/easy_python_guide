@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python Booleans for beginners with 10 practical code examples. Master true/false logic used in web development, data analysis, and real-world programming jobs.">
   <meta property="og:title" content="Easy Python Guide">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -35,7 +36,98 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Booleans</h2>
-      <h3>Page Coming Soon</h3>
+      <p>Booleans are one of the fundamental data types in Python, representing simple true or false values. Named after mathematician George Boole, a Boolean can only hold one of two possible values: True or False. In Python, these are written exactly as shown, with capital letters, and they form the backbone of logical operations and decision-making in programming. Think of Booleans as digital switches that are either on or off, yes or no, present or absent.</p>
+      <p>Boolean values are created in several ways in Python. You can assign them directly using my_variable = True or is_complete = False. More commonly, they result from comparison operations such as age >= 18, which evaluates to True if the age is 18 or above, or False otherwise. Functions can also return Boolean values, like username.startswith('admin') which checks if a username begins with the word 'admin'. These comparisons form the foundation of conditional logic in programming.</p>
+      <p>In web development and e-commerce, Booleans are essential for managing user states and business logic. Online shopping platforms use Boolean flags like is_in_stock, is_premium_member, or has_valid_payment to control what customers can see and do. For instance, a clothing website might use if is_premium_member: apply_discount = True to offer exclusive discounts, or if item_quantity > 0: show_add_to_cart_button = True to display the purchase option only when items are available.</p>
+      <p>Data analysts and financial professionals rely heavily on Boolean operations to filter and categorise information. In a banking system, analysts might use conditions like if transaction_amount > 10000 and is_international_transfer: flag_for_review = True to identify potentially suspicious transactions. Marketing teams use Boolean logic to segment customers, such as if age_group == 'young_adult' and has_smartphone: send_mobile_app_promotion = True, allowing them to target specific demographics with relevant campaigns.</p>
+      <p>Healthcare and safety-critical systems demonstrate perhaps the most crucial applications of Boolean logic. Medical software might use if patient_age < 12 and medication_dose > child_limit: display_warning = True to prevent dangerous prescriptions. In manufacturing, quality control systems employ Booleans like if temperature_reading >= safety_threshold or pressure_level <= minimum_required: shutdown_system = True to automatically halt operations when dangerous conditions are detected. These simple true/false decisions can literally save lives by ensuring systems respond appropriately to critical situations.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of uses of booleans:</p>
+      <pre><code class="language-python">
+# Define Boolean variables
+is_logged_in = True
+is_premium_user = False
+age = 25
+temperature = 22
+
+# 1. Direct assignment: creating Boolean values
+has_permission = True
+is_complete = False
+print("Direct assignment - has_permission:", has_permission)
+print("Direct assignment - is_complete:", is_complete)
+
+# 2. Comparison operators: create Booleans from comparisons
+is_adult = age >= 18  # True (25 is greater than or equal to 18)
+is_cold = temperature < 15  # False (22 is not less than 15)
+print("Comparison - is_adult:", is_adult)
+print("Comparison - is_cold:", is_cold)
+
+# 3. Logical AND: both conditions must be True
+can_access_premium = is_logged_in and is_premium_user  # True and False = False
+print("Logical AND - can_access_premium:", can_access_premium)
+
+# 4. Logical OR: at least one condition must be True
+show_content = is_logged_in or is_premium_user  # True or False = True
+print("Logical OR - show_content:", show_content)
+
+# 5. Logical NOT: reverses the Boolean value
+is_guest = not is_logged_in  # not True = False
+print("Logical NOT - is_guest:", is_guest)
+
+# 6. Boolean conversion: converting other data types to Boolean
+empty_string = ""
+non_empty_string = "Hello"
+zero_number = 0
+positive_number = 42
+
+bool_empty = bool(empty_string)      # False (empty string is falsy)
+bool_non_empty = bool(non_empty_string)  # True (non-empty string is truthy)
+bool_zero = bool(zero_number)        # False (zero is falsy)
+bool_positive = bool(positive_number)    # True (non-zero numbers are truthy)
+print("Boolean conversion - empty string:", bool_empty)
+print("Boolean conversion - non-empty string:", bool_non_empty)
+print("Boolean conversion - zero:", bool_zero)
+print("Boolean conversion - positive number:", bool_positive)
+
+# 7. Identity operators: checking if variables reference the same object
+x = True
+y = True
+z = False
+is_same_object = x is y     # True (both reference the same True object)
+is_different = x is not z   # True (x and z reference different objects)
+print("Identity - x is y:", is_same_object)
+print("Identity - x is not z:", is_different)
+
+# 8. Membership testing: checking if values exist in collections
+user_roles = ["admin", "editor", "viewer"]
+has_admin_role = "admin" in user_roles      # True
+has_manager_role = "manager" in user_roles  # False
+print("Membership - has admin role:", has_admin_role)
+print("Membership - has manager role:", has_manager_role)
+
+# 9. Conditional expressions (ternary operator): compact if-else using Booleans
+account_type = "Premium" if is_premium_user else "Standard"
+access_level = "Full" if is_logged_in and age >= 18 else "Limited"
+print("Ternary operator - account_type:", account_type)
+print("Ternary operator - access_level:", access_level)
+
+# 10. Boolean functions: functions that return Boolean values
+def is_valid_email(email):
+    return "@" in email and "." in email
+
+def is_strong_password(password):
+    return len(password) >= 8 and any(char.isdigit() for char in password)
+
+email_valid = is_valid_email("user@example.com")    # True
+password_strong = is_strong_password("abc123")      # False (too short)
+print("Function returning Boolean - email valid:", email_valid)
+print("Function returning Boolean - password strong:", password_strong)  
+      </code></pre>
+      <h4>
+        <a href="../pages/strings.html">◄ Strings</a> |
+        <a href="../pages/bytes.html">Bytes and Byte Arrays ►</a>
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
