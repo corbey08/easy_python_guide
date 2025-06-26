@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python bytes and byte arrays for beginners. Understand binary data handling with practical examples for file processing, networking, and real-world programming jobs.">
   <meta property="og:title" content="Easy Python Guide">  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
   <script>
@@ -19,6 +19,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -34,7 +35,63 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Bytes and Byte Arrays</h2>
-      <h3>Page Coming Soon</h3>
+      <p>In Python programming, bytes and byte arrays represent raw binary data rather than human-readable text or simple numbers. Unlike strings, which contain characters we can easily read and understand, or integers which represent whole numbers, bytes work at a much lower level with the actual binary information that computers use internally. Think of bytes as the computer's native language - sequences of numbers between 0 and 255 that represent everything from text in different languages to images, sounds, and files. For beginners learning Python, you can absolutely build useful programmes without understanding bytes deeply, as Python's higher-level data types like strings and integers handle most everyday programming tasks perfectly well.</p>
+      <p>A byte array is essentially a mutable sequence of bytes, meaning you can change individual bytes after creating the array. This differs from regular bytes objects, which are immutable like strings. To create bytes in Python, you might write b'Hello' (notice the 'b' prefix), whilst a byte array would be created with bytearray(b'Hello'). The key difference is that once you've created a bytes object, you cannot modify it, but you can change individual elements in a byte array. Both represent the same underlying concept - sequences of raw binary data - but offer different levels of flexibility depending on whether you need to modify the data.</p>
+      <p>In professional software development, bytes and byte arrays become crucial when working with files, network communications, and data processing. For instance, when a web developer needs to handle file uploads - whether someone is uploading a photograph to Instagram or a document to Google Drive - the server receives this data as bytes. The programme cannot treat an image file as simple text; it must process the raw binary data to understand the image format, dimensions, and pixel information. Similarly, when sending data across the internet, everything gets converted to bytes for transmission, then reconstructed on the receiving end.</p>
+      <p>Database administrators and data engineers frequently work with bytes when handling binary data storage or when interfacing with legacy systems that don't use modern text encoding. Cryptography and security professionals rely heavily on byte manipulation when implementing encryption algorithms, as these mathematical operations work on the binary representation of data rather than its human-readable form. Game developers might use byte arrays when processing audio files for sound effects or when handling custom file formats that store game assets efficiently.</p>
+      <p>The complexity of bytes compared to strings and integers lies in their lower-level nature and the additional considerations they require. You must understand character encoding (like UTF-8) when converting between strings and bytes, handle endianness when working with multi-byte numbers, and consider memory management more carefully. However, for most beginner projects - building calculators, simple web applications, or data analysis scripts - Python's string and integer types provide everything needed. Focus on mastering these fundamental data types first, and you'll naturally encounter bytes when you tackle more advanced projects that require file handling, network programming, or system-level operations.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of what can be done with bytes:</p>
+      <pre><code class="language-python">
+# Define bytes and byte arrays using variables
+data1 = b"Hello World"  # bytes object (immutable)
+data2 = bytearray(b"python programming")  # byte array (mutable)
+
+# Creating bytes from string: converts text to binary representation
+text_to_bytes = "Hello".encode('utf-8')  # b'Hello'
+print("String to bytes:", text_to_bytes)
+
+# Converting bytes to string: decodes binary data back to readable text
+bytes_to_text = data1.decode('utf-8')  # "Hello World"
+print("Bytes to string:", bytes_to_text)
+
+# Concatenation: joins two bytes objects together
+concat_result = data1 + b" " + b"python"  # b'Hello World python'
+print("Concatenation:", concat_result)
+
+# Replace: substitutes specified byte sequences
+replace_result = data1.replace(b"World", b"Python")  # b'Hello Python'
+print("Replace:", replace_result)
+
+# Find: returns the index of the first occurrence of a byte sequence
+find_result = data1.find(b"World")  # 6 (index where b"World" starts)
+print("Find b'World':", find_result)
+
+# Length: returns the number of bytes in the sequence
+len_result = len(data1)  # 11 bytes
+print("Length:", len_result)
+
+# Slice: extracts a portion of the bytes using indexing
+slice_result = data1[0:5]  # b'Hello' (bytes from index 0 to 4)
+print("Slice [0:5]:", slice_result)
+
+# Individual byte access: get the numeric value of a specific byte
+byte_value = data1[0]  # 72 (ASCII value of 'H')
+print("First byte value:", byte_value)
+
+# Modifying byte arrays: change individual bytes (only works with bytearray)
+data2[0] = 80  # Changes 'p' (112) to 'P' (80)
+print("Modified byte array:", data2)  # bytearray(b'Python programming')
+
+# Hex representation: converts bytes to hexadecimal format for debugging
+hex_result = data1.hex()  # '48656c6c6f20576f726c64'
+print("Hex representation:", hex_result)
+      </code></pre>
+      <h4>
+        <a href="../pages/booleans.html">◄ Booleans</a> |
+        <a href="../pages/operators.html">Operators ►</a>
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -44,5 +101,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
