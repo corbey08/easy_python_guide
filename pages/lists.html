@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python lists for beginners with practical examples and real-world applications. Master list syntax, methods, and operations with step-by-step code examples.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -40,6 +41,132 @@
       <p>In customer service roles, lists prove invaluable for managing client information and tracking interactions. A customer service representative might maintain a list of pending enquiries like pending_tickets = ['Billing query - Smith', 'Product return - Jones', 'Technical support - Brown']. They could add new tickets as they arrive, remove resolved ones, and prioritise urgent cases by reordering the list. Similarly, call centre agents often work with lists of phone numbers to contact, systematically working through them and removing completed calls whilst adding new leads.</p>
       <p>Marketing professionals frequently use lists to organise campaigns and track customer segments. A digital marketing specialist might create lists of email addresses for different customer groups: premium_customers = ['alice@email.com', 'bob@email.com'] and new_subscribers = ['charlie@email.com', 'diana@email.com']. They can merge lists for broader campaigns, filter them based on criteria, or remove unsubscribed addresses. Social media managers also use lists to track hashtags, schedule post topics, or monitor competitor accounts, making it easy to iterate through content ideas and track what's been published.</p>
       <p>Data analysis roles across various industries rely heavily on lists for processing and organising information. A sales analyst might store monthly revenue figures in a list like monthly_sales = [45000, 52000, 48000, 61000] to calculate trends, find the highest performing month, or compute averages. HR professionals use lists to manage employee data, track training completion, or organise interview candidates. Even in healthcare, administrative staff might use lists to manage patient appointments, track medication schedules, or organise test results, demonstrating how this simple but powerful data structure underpins countless professional tasks across different sectors.</p>
+            <h3>Syntax</h3>
+      <p>Some examples of uses of lists:</p>
+      <pre><code class="language-python">
+# Define initial lists for examples
+teams = ['Everton', 'Arsenal', 'Fulham']
+numbers = [10, 25, 3, 45, 12]
+mixed_list = ['hello', 42, True, 3.14]
+empty_list = []
+
+# 1. Creating lists: different ways to create and initialise lists
+colours = ['red', 'green', 'blue']
+temperatures = [18.5, 22.1, 19.8, 21.3]
+shopping_list = ['milk', 'bread', 'eggs', 'cheese']
+print("Creating lists - colours:", colours)
+print("Creating lists - temperatures:", temperatures)
+
+# 2. Accessing elements: using indices to get specific items
+first_team = teams[0]          # 'Everton' (first item, index 0)
+last_team = teams[-1]          # 'Fulham' (last item, negative indexing)
+second_number = numbers[1]     # 25 (second item, index 1)
+print("Accessing elements - first team:", first_team)
+print("Accessing elements - last team:", last_team)
+print("Accessing elements - second number:", second_number)
+
+# 3. Slicing: extracting portions of lists
+first_two_teams = teams[0:2]       # ['Everton', 'Arsenal'] (items 0 and 1)
+last_three_numbers = numbers[-3:]  # [3, 45, 12] (last three items)
+middle_numbers = numbers[1:4]      # [25, 3, 45] (items 1, 2, and 3)
+print("Slicing - first two teams:", first_two_teams)
+print("Slicing - last three numbers:", last_three_numbers)
+
+# 4. Adding elements: different methods to add items to lists
+teams.append('Liverpool')                 # Add to end
+teams.insert(1, 'Chelsea')                # Insert at specific position
+colours.extend(['yellow', 'purple'])      # Add multiple items
+print("Adding elements - teams after append/insert:", teams)
+print("Adding elements - colours after extend:", colours)
+
+# 5. Removing elements: various ways to remove items from lists
+teams.remove('Arsenal')           # Remove first occurrence of 'Arsenal'
+removed_number = numbers.pop()    # Remove and return last item
+removed_at_index = numbers.pop(0) # Remove and return item at index 0
+print("Removing elements - teams after remove:", teams)
+print("Removing elements - removed number:", removed_number)
+print("Removing elements - numbers after pop operations:", numbers)
+
+# 6. List methods: useful built-in methods for list manipulation
+numbers_copy = [10, 25, 3, 45, 12, 3]  # Reset for examples
+count_of_3 = numbers_copy.count(3)      # Count occurrences of 3
+index_of_25 = numbers_copy.index(25)    # Find index of first occurrence
+numbers_copy.sort()                     # Sort in ascending order
+colours.reverse()                       # Reverse the order
+print("List methods - count of 3:", count_of_3)
+print("List methods - index of 25:", index_of_25)
+print("List methods - sorted numbers:", numbers_copy)
+print("List methods - reversed colours:", colours)
+
+# 7. List length and membership: checking size and contents
+team_count = len(teams)                # Number of items in list
+has_everton = 'Everton' in teams       # Check if 'Everton' exists
+has_city = 'City' not in teams         # Check if 'City' doesn't exist
+print("Length and membership - team count:", team_count)
+print("Length and membership - has Everton:", has_everton)
+print("Length and membership - has City:", has_city)
+
+# 8. Iterating through lists: different ways to loop through items
+print("Iterating - simple loop through fruits:")
+for fruit in fruits:
+    print(f"  - {fruit}")
+
+print("Iterating - loop with index and item:")
+for index, colour in enumerate(colours):
+    print(f"  {index}: {colour}")
+
+# 9. List comprehensions: creating new lists based on existing ones
+squared_numbers = [x**2 for x in [1, 2, 3, 4, 5]]     # Square each number
+long_fruits = [fruit for fruit in fruits if len(fruit) > 4]  # Fruits with >4 letters
+upper_colours = [colour.upper() for colour in colours]  # Convert to uppercase
+print("List comprehensions - squared numbers:", squared_numbers)
+print("List comprehensions - long fruits:", long_fruits)
+print("List comprehensions - upper colours:", upper_colours)
+
+# 10. Nested lists and practical applications: lists containing other lists
+customer_orders = [
+    ['John Smith', 'Pizza', 15.99],
+    ['Jane Doe', 'Burger', 12.50],
+    ['Bob Wilson', 'Salad', 8.75]
+]
+weekly_temperatures = [
+    [18, 22, 20, 19],  # Week 1
+    [21, 24, 23, 25],  # Week 2
+    [16, 18, 17, 20]   # Week 3
+]
+
+# Accessing nested list data
+first_customer_name = customer_orders[0][0]    # 'John Smith'
+week_2_temp_3 = weekly_temperatures[1][2]      # 23 (Week 2, Day 3)
+print("Nested lists - first customer:", first_customer_name)
+print("Nested lists - week 2 day 3 temperature:", week_2_temp_3)
+
+# 11. Real-world examples: practical workplace scenarios
+# Customer service ticket system
+support_tickets = ['Password reset - Alice', 'Billing query - Bob', 'Bug report - Carol']
+support_tickets.append('Feature request - Dave')
+completed_ticket = support_tickets.pop(0)  # Process first ticket
+print("Real-world - support tickets:", support_tickets)
+print("Real-world - completed ticket:", completed_ticket)
+
+# Marketing email campaign
+email_addresses = ['customer1@email.com', 'customer2@email.com', 'customer3@email.com']
+new_subscribers = ['customer4@email.com', 'customer5@email.com']
+email_addresses.extend(new_subscribers)  # Add new subscribers
+total_subscribers = len(email_addresses)
+print("Real-world - total email subscribers:", total_subscribers)
+
+# Sales data analysis
+monthly_sales = [45000, 52000, 48000, 61000, 55000, 49000]
+highest_sales = max(monthly_sales)      # Find highest month
+average_sales = sum(monthly_sales) / len(monthly_sales)  # Calculate average
+print("Real-world - highest monthly sales:", highest_sales)
+print("Real-world - average monthly sales:", round(average_sales, 2))
+      </code></pre>
+      <h4>
+        <a href="../pages/operaters.html">◄ Operators</a> |
+        <a href="../pages/tuples.html">Tuples ►</a>
+      </h4>
     </div>
   </main>
   <footer>
@@ -50,5 +177,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
