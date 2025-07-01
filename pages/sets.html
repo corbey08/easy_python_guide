@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python sets with practical examples for data analysis, web development & business applications. Complete guide with syntax, methods & real-world use cases.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -35,7 +36,131 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Sets</h2>
-      <h3>Page Coming Soon</h3>
+      <p>Sets in Python are unordered collections of unique elements that provide an efficient way to store and manipulate data where duplicates aren't allowed. Unlike lists or tuples, sets automatically ensure that each element appears only once, making them particularly useful when you need to eliminate duplicates or perform mathematical set operations. Sets are defined using curly braces or the set() constructor, and they're mutable, meaning you can add or remove elements after creation. For example, my_set = {1, 2, 3, 4} or my_set = set([1, 2, 3, 4]) both create sets with four unique integers.</p>
+      <p>In data analysis and marketing roles, sets prove invaluable for customer segmentation and campaign management. Marketing analysts frequently use sets to identify unique customers across different campaigns, remove duplicate email addresses from mailing lists, or find overlapping audiences between different marketing channels. For instance, if you have customer lists from Facebook ads, Google ads, and email campaigns, you can use set operations to find customers who engaged with multiple channels or identify entirely new prospects. A marketing manager might write facebook_customers.intersection(email_customers) to find customers who responded to both Facebook and email campaigns, helping them understand which customers are most engaged across platforms.</p>
+      <p>Web developers and system administrators regularly employ sets for managing user permissions, handling unique identifiers, and processing log data. When building authentication systems, sets can store user roles or permissions, ensuring no duplicates exist whilst allowing quick lookups to verify access rights. For example, a web application might maintain admin_permissions = {'read', 'write', 'delete', 'modify_users'} and use set operations to check if a user has specific permissions. System administrators use sets to process server logs, identifying unique IP addresses, detecting unusual access patterns, or finding the intersection of failed login attempts across multiple servers.</p>
+      <p>Quality assurance engineers and data scientists leverage sets extensively for data validation and cleaning tasks. When processing large datasets from databases or APIs, sets help identify duplicate records, missing values, or inconsistencies in data entry. A QA engineer testing an e-commerce platform might use sets to ensure product categories are unique, verify that customer IDs don't appear multiple times in order records, or check that all required fields are present across different data sources. Data scientists use sets to identify unique values in categorical variables, remove outliers, or find common elements between different datasets before performing analysis or machine learning tasks.</p>
+      <p>Financial analysts and business intelligence professionals utilise sets for risk management, compliance reporting, and market analysis. In banking, sets can identify unique transaction types, flag unusual trading patterns, or ensure regulatory compliance by checking that all required documentation is present for loan applications. A financial analyst might use sets to identify customers who have both savings and investment accounts, find unique stock symbols in trading data, or compare portfolio holdings across different time periods. Sets also prove useful in fraud detection, where analysts can quickly identify transactions that appear in multiple suspicious activity reports or find common patterns across different cases, enabling them to spot potential fraud networks more efficiently.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of the syntax for sets and what can be done with them:</p>
+      <pre><code class="language-python">
+# Example 1: Creating Sets - Different Methods
+employee_ids = {101, 102, 103, 104, 105}  # Set literal
+departments = set(['Engineering', 'Marketing', 'Sales', 'HR'])  # From list
+skills = set()  # Empty set
+print(f"Employee IDs: {employee_ids}")
+print(f"Departments: {departments}")
+
+# Example 2: Adding Elements to Sets
+programming_languages = {'Python', 'Java', 'JavaScript'}
+programming_languages.add('C++')  # Add single element
+programming_languages.update(['Ruby', 'Go'])  # Add multiple elements
+print(f"Programming languages: {programming_languages}")
+
+# Example 3: Removing Duplicates from Customer Data
+customer_emails = ['john@email.com', 'sarah@email.com', 'john@email.com', 'mike@email.com', 'sarah@email.com']
+unique_emails = set(customer_emails)  # Automatically removes duplicates
+print(f"Original emails: {len(customer_emails)}, Unique emails: {len(unique_emails)}")
+print(f"Unique customer emails: {unique_emails}")
+
+# Example 4: Set Operations - Finding Common Skills
+backend_developers = {'Python', 'Java', 'SQL', 'Docker', 'AWS'}
+frontend_developers = {'JavaScript', 'React', 'CSS', 'HTML', 'AWS'}
+fullstack_skills = backend_developers.intersection(frontend_developers)  # Common skills
+all_skills = backend_developers.union(frontend_developers)  # All unique skills
+backend_only = backend_developers.difference(frontend_developers)  # Backend exclusive
+print(f"Common skills: {fullstack_skills}")
+print(f"Backend only skills: {backend_only}")
+print(f"Total unique skills: {len(all_skills)}")
+
+# Example 5: User Permission Management
+admin_permissions = {'read', 'write', 'delete', 'manage_users', 'system_config'}
+editor_permissions = {'read', 'write', 'edit_content'}
+viewer_permissions = {'read'}
+user_role = 'editor'
+current_permissions = editor_permissions.copy()  # Copy set
+has_write_access = 'write' in current_permissions  # Membership testing
+print(f"User has write access: {has_write_access}")
+print(f"User permissions: {current_permissions}")
+
+# Example 6: Inventory Management - Stock Checking
+available_products = {'laptop', 'mouse', 'keyboard', 'monitor', 'webcam'}
+ordered_products = {'laptop', 'printer', 'keyboard', 'speakers'}
+out_of_stock = ordered_products.difference(available_products)  # Items not available
+in_stock_orders = ordered_products.intersection(available_products)  # Available items
+print(f"Out of stock items: {out_of_stock}")
+print(f"Items we can fulfil: {in_stock_orders}")
+
+# Example 7: Network Security - IP Address Monitoring
+trusted_ips = {'192.168.1.10', '192.168.1.20', '10.0.0.5'}
+suspicious_ips = {'192.168.1.30', '10.0.0.5', '203.0.113.1'}
+blocked_ips = set()
+current_connection = '10.0.0.5'
+is_trusted = current_connection in trusted_ips
+is_suspicious = current_connection in suspicious_ips
+if is_suspicious and not is_trusted:
+    blocked_ips.add(current_connection)
+print(f"Connection from {current_connection} - Trusted: {is_trusted}, Suspicious: {is_suspicious}")
+print(f"Blocked IPs: {blocked_ips}")
+
+# Example 8: Set Methods - Remove and Discard
+project_tags = {'urgent', 'backend', 'api', 'testing', 'deployment'}
+completed_tags = {'testing', 'deployment'}
+project_tags.remove('urgent')  # Remove specific element (raises error if not found)
+project_tags.discard('nonexistent')  # Remove if exists (no error if not found)
+remaining_tags = project_tags - completed_tags  # Set subtraction
+print(f"Remaining project tags: {remaining_tags}")
+
+# Example 9: Database Query Optimisation - Unique Values
+user_locations = ['London', 'Manchester', 'London', 'Edinburgh', 'Cardiff', 'Manchester', 'Glasgow']
+unique_locations = set(user_locations)
+location_count = len(unique_locations)
+needs_indexing = location_count > 5  # Decide if database index needed
+print(f"Unique locations: {unique_locations}")
+print(f"Location count: {location_count}, Needs indexing: {needs_indexing}")
+
+# Example 10: Quality Assurance - Test Coverage Analysis
+required_tests = {'login', 'registration', 'payment', 'search', 'profile', 'logout'}
+completed_tests = {'login', 'registration', 'search', 'profile'}
+failed_tests = {'payment'}
+remaining_tests = required_tests - completed_tests - failed_tests
+test_coverage = len(completed_tests) / len(required_tests) * 100
+all_tests_passed = len(failed_tests) == 0 and len(remaining_tests) == 0
+print(f"Test coverage: {test_coverage:.1f}%")
+print(f"Remaining tests: {remaining_tests}")
+print(f"All tests passed: {all_tests_passed}")
+
+# Example 11: Set Comprehension and Filtering
+employee_scores = [85, 92, 78, 95, 88, 76, 91, 89]
+high_performers = {score for score in employee_scores if score >= 90}  # Set comprehension
+performance_levels = set()
+for score in employee_scores:
+    if score >= 90:
+        performance_levels.add('excellent')
+    elif score >= 80:
+        performance_levels.add('good')
+    else:
+        performance_levels.add('needs_improvement')
+print(f"High performer scores: {high_performers}")
+print(f"Performance levels present: {performance_levels}")
+
+# Example 12: Symmetric Difference - Finding Exclusive Elements
+last_month_customers = {'C001', 'C002', 'C003', 'C004', 'C005'}
+this_month_customers = {'C003', 'C004', 'C006', 'C007', 'C008'}
+customer_changes = last_month_customers.symmetric_difference(this_month_customers)
+new_customers = this_month_customers - last_month_customers
+lost_customers = last_month_customers - this_month_customers
+retention_rate = len(last_month_customers.intersection(this_month_customers)) / len(last_month_customers) * 100
+print(f"Customer changes: {customer_changes}")
+print(f"New customers: {new_customers}")
+print(f"Lost customers: {lost_customers}")
+print(f"Retention rate: {retention_rate:.1f}%")
+      </code></pre>
+      <h4>
+        <a href="../pages/tuples.html">◄ Tuples</a> |
+        <a href="../pages/disctionaries.html">Dictionaries ►</a>
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -45,5 +170,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
