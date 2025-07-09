@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python tuples for beginners with practical examples. Discover how to use immutable data structures in real programming jobs with clear UK English explanations.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -35,7 +36,262 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Tuples</h2>
-      <h3>Page Coming Soon</h3>
+      <p>A tuple in Python is a data structure that allows you to store multiple items in a single variable, similar to a list. However, unlike lists, tuples are immutable, which means once you create a tuple, you cannot change its contents. Tuples are created by placing items inside parentheses, separated by commas, such as coordinates = (10, 20) or person_info = ("John", 25, "Engineer"). This immutability makes tuples particularly useful when you need to store data that shouldn't be accidentally modified during your program's execution.</p>
+      <p>One of the most common uses of tuples is for storing coordinates and geographical data. In mapping applications like Google Maps or delivery services, developers frequently use tuples to represent locations as (latitude, longitude) pairs. For example, london_location = (51.5074, -0.1278) represents London's coordinates. Similarly, in game development, tuples are used to store positions on a screen or in a 3D world, such as player_position = (100, 250, 50) for x, y, and z coordinates. The immutable nature ensures that these fundamental reference points cannot be accidentally altered.</p>
+      <p>In database and web development, tuples are commonly used to represent records or rows of data. When querying a database, results are often returned as tuples containing the values from different columns. For instance, a customer record might be represented as customer = ("Sarah Johnson", "sarah@email.com", "Premium", 2019), containing name, email, subscription type, and join year. Web developers also use tuples for HTTP status codes and responses, such as response = (200, "OK", {"content": "Hello World"}), where the structure remains consistent throughout the application.</p>
+      <p>Configuration and settings management is another area where tuples prove invaluable in professional development. Software applications often need to store unchangeable configuration data, such as database_config = ("localhost", 5432, "production_db", "read_only") for database connections, or colour_palette = ("#FF5733", "#33FF57", "#3357FF") for design systems. In financial software, tuples might represent fixed exchange rates or commission structures like gbp_usd_rate = (1.27, "2024-01-15"), ensuring these critical values cannot be inadvertently modified.</p>
+      <p>The immutable characteristic of tuples also makes them excellent for use as dictionary keys, which is particularly useful in caching and data indexing scenarios. In e-commerce applications, you might use tuples like (product_id, size, colour) as keys to store inventory levels, or (user_id, date, action) to track user behaviour. This reliability and hashability of tuples makes them indispensable in professional Python development, where data integrity and predictable behaviour are paramount for building robust applications.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of what can be done with tuples:</p>
+      <pre><code class="language-python">
+# Example 1: Creating Tuples - Different Methods
+employee_record = (101, 'Sarah Johnson', 'Software Engineer', 45000)  # Tuple literal
+coordinates = 51.5074, -0.1278  # Parentheses optional
+database_config = tuple(['localhost', 5432, 'production_db'])  # From list
+single_item = (42,)  # Single item tuple (note the comma)
+empty_tuple = ()  # Empty tuple
+print(f"Employee record: {employee_record}")
+print(f"London coordinates: {coordinates}")
+print(f"Database config: {database_config}")
+
+# Example 2: Accessing Tuple Elements
+customer_data = ('John Smith', 'john@email.com', 'Premium', 2019)
+name = customer_data[0]  # First element
+email = customer_data[1]  # Second element
+subscription_type = customer_data[-2]  # Second from end
+year_joined = customer_data[-1]  # Last element
+print(f"Customer: {name}, Email: {email}, Type: {subscription_type}")
+
+# Example 3: Tuple Unpacking - Very Common in Professional Code
+http_response = (200, 'OK', {'content-type': 'application/json'})
+status_code, message, headers = http_response  # Unpack into variables
+print(f"HTTP Status: {status_code} - {message}")
+print(f"Headers: {headers}")
+
+# Example 4: Multiple Assignment and Swapping
+x, y = 10, 20  # Multiple assignment using tuples
+print(f"Before swap: x={x}, y={y}")
+x, y = y, x  # Swap values elegantly
+print(f"After swap: x={x}, y={y}")
+
+# Example 5: Function Returns - Returning Multiple Values
+def get_user_stats(user_id):
+    """Simulate fetching user statistics from database"""
+    return user_id, 'active', 1250, 4.8  # Returns tuple
+
+user_id, status, points, rating = get_user_stats(12345)
+print(f"User {user_id}: {status}, {points} points, {rating} rating")
+
+# Example 6: Database Records and CSV Data Processing
+sales_records = [
+    (1001, '2024-01-15', 'Widget A', 150.00, 'Completed'),
+    (1002, '2024-01-16', 'Widget B', 200.00, 'Pending'),
+    (1003, '2024-01-17', 'Widget A', 150.00, 'Completed')
+]
+
+total_sales = 0
+for order_id, date, product, amount, status in sales_records:
+    if status == 'Completed':
+        total_sales += amount
+    print(f"Order {order_id}: {product} - £{amount} ({status})")
+print(f"Total completed sales: £{total_sales}")
+
+# Example 7: Geographic and Mapping Applications
+london_coords = (51.5074, -0.1278)
+manchester_coords = (53.4808, -2.2426)
+edinburgh_coords = (55.9533, -3.1883)
+
+cities = [
+    ('London', london_coords),
+    ('Manchester', manchester_coords),
+    ('Edinburgh', edinburgh_coords)
+]
+
+for city_name, (latitude, longitude) in cities:
+    print(f"{city_name} is located at {latitude}°N, {longitude}°W")
+
+# Example 8: Configuration Management
+server_configs = [
+    ('web-server-1', 'nginx', 80, 'production'),
+    ('web-server-2', 'apache', 8080, 'staging'),
+    ('db-server-1', 'postgresql', 5432, 'production')
+]
+
+for server_name, service, port, environment in server_configs:
+    if environment == 'production':
+        print(f"PROD: {server_name} running {service} on port {port}")
+
+# Example 9: Tuples as Dictionary Keys (Immutable Property)
+inventory = {
+    ('laptop', 'Dell', '15-inch'): 25,
+    ('laptop', 'HP', '14-inch'): 30,
+    ('mouse', 'Logitech', 'wireless'): 100,
+    ('keyboard', 'Microsoft', 'mechanical'): 15
+}
+
+# Look up specific item
+item_key = ('laptop', 'Dell', '15-inch')
+stock_level = inventory.get(item_key, 0)
+print(f"Stock for {item_key}: {stock_level} units")
+
+# Process all inventory
+for (category, brand, specification), quantity in inventory.items():
+    if quantity < 20:
+        print(f"LOW STOCK: {category} - {brand} {specification} ({quantity} units)")
+
+# Example 10: Network and API Response Handling
+api_endpoints = [
+    ('GET', '/api/users', 200, 'Get all users'),
+    ('POST', '/api/users', 201, 'Create new user'),
+    ('PUT', '/api/users/{id}', 200, 'Update user'),
+    ('DELETE', '/api/users/{id}', 204, 'Delete user')
+]
+
+for method, endpoint, expected_status, description in api_endpoints:
+    print(f"{method:6} {endpoint:20} -> {expected_status} ({description})")
+
+# Example 11: Time Series and Financial Data
+daily_prices = [
+    ('2024-01-15', 'AAPL', 185.50, 187.20, 184.80, 186.90),
+    ('2024-01-16', 'AAPL', 186.90, 188.50, 186.00, 188.20),
+    ('2024-01-17', 'AAPL', 188.20, 189.80, 187.50, 189.25)
+]
+
+for date, symbol, open_price, high, low, close in daily_prices:
+    daily_change = close - open_price
+    change_percent = (daily_change / open_price) * 100
+    print(f"{date} {symbol}: £{close:.2f} ({change_percent:+.2f}%)")
+
+# Example 12: Tuple Methods and Operations
+employee_roles = ('developer', 'manager', 'analyst', 'developer', 'designer')
+developer_count = employee_roles.count('developer')  # Count occurrences
+manager_index = employee_roles.index('manager')  # Find first occurrence
+team_size = len(employee_roles)  # Length
+has_analyst = 'analyst' in employee_roles  # Membership testing
+
+print(f"Team size: {team_size}")
+print(f"Developers: {developer_count}")
+print(f"Manager at position: {manager_index}")
+print(f"Has analyst: {has_analyst}")
+
+# Example 13: Tuple Slicing and Iteration
+weekly_sales = (1200, 1450, 1300, 1600, 1750, 1400, 1350)
+weekdays = weekly_sales[:5]  # Monday to Friday
+weekend = weekly_sales[5:]  # Saturday and Sunday
+mid_week = weekly_sales[1:4]  # Tuesday to Thursday
+
+print(f"Weekday sales: {weekdays}")
+print(f"Weekend sales: {weekend}")
+print(f"Mid-week total: £{sum(mid_week)}")
+
+# Example 14: Nested Tuples - Complex Data Structures
+company_structure = (
+    ('Engineering', (
+        ('Backend Team', ('Alice', 'Bob', 'Charlie')),
+        ('Frontend Team', ('Diana', 'Eve', 'Frank'))
+    )),
+    ('Marketing', (
+        ('Digital Marketing', ('Grace', 'Henry')),
+        ('Content Team', ('Ivy', 'Jack'))
+    ))
+)
+
+for department, teams in company_structure:
+    print(f"\n{department} Department:")
+    for team_name, members in teams:
+        print(f"  {team_name}: {', '.join(members)}")
+
+# Example 15: Immutability Demonstration
+original_coords = (10, 20)
+print(f"Original coordinates: {original_coords}")
+
+# This would cause an error - tuples are immutable:
+# original_coords[0] = 30  # TypeError: 'tuple' object does not support item assignment
+
+# Instead, create a new tuple
+new_coords = (30, original_coords[1])
+print(f"New coordinates: {new_coords}")
+
+# Example 16: Named Tuples Alternative (Using Regular Tuples)
+def create_product_record(name, price, category, in_stock):
+    """Create a product record tuple with consistent structure"""
+    return (name, price, category, in_stock)
+
+def get_product_price(product_tuple):
+    """Extract price from product tuple"""
+    return product_tuple[1]
+
+product = create_product_record('Gaming Mouse', 79.99, 'Electronics', True)
+price = get_product_price(product)
+print(f"Product: {product[0]}, Price: £{price}")
+
+# Example 17: Converting Between Data Types
+user_list = ['John', 25, 'Engineer', True]
+user_tuple = tuple(user_list)  # Convert list to tuple
+back_to_list = list(user_tuple)  # Convert tuple back to list
+
+print(f"Original list: {user_list}")
+print(f"As tuple: {user_tuple}")
+print(f"Back to list: {back_to_list}")
+print(f"Are they equal? {user_list == back_to_list}")
+
+# Example 18: Tuple Comparison and Sorting
+student_grades = [
+    ('Alice', 85, 'Computer Science'),
+    ('Bob', 92, 'Mathematics'),
+    ('Charlie', 78, 'Physics'),
+    ('Diana', 96, 'Computer Science')
+]
+
+# Sort by grade (second element)
+sorted_by_grade = sorted(student_grades, key=lambda x: x[1], reverse=True)
+print("\nStudents sorted by grade (highest first):")
+for name, grade, subject in sorted_by_grade:
+    print(f"{name}: {grade}% ({subject})")
+
+# Example 19: Error Handling with Tuples
+def divide_with_status(a, b):
+    """Return result and success status as tuple"""
+    try:
+        result = a / b
+        return (result, True, "Success")
+    except ZeroDivisionError:
+        return (None, False, "Cannot divide by zero")
+
+# Using the function
+result, success, message = divide_with_status(10, 2)
+if success:
+    print(f"Division result: {result}")
+else:
+    print(f"Error: {message}")
+
+# Example 20: Real-world Application - Log File Processing
+log_entries = [
+    ('2024-01-15 10:30:15', 'INFO', 'User login successful', 'user_123'),
+    ('2024-01-15 10:35:22', 'WARNING', 'High memory usage detected', 'system'),
+    ('2024-01-15 10:40:01', 'ERROR', 'Database connection failed', 'db_service'),
+    ('2024-01-15 10:45:33', 'INFO', 'Backup completed successfully', 'backup_service')
+]
+
+error_count = 0
+warning_count = 0
+
+print("\nLog Analysis:")
+for timestamp, level, message, source in log_entries:
+    if level == 'ERROR':
+        error_count += 1
+        print(f"🔴 {timestamp} [{source}]: {message}")
+    elif level == 'WARNING':
+        warning_count += 1
+        print(f"🟡 {timestamp} [{source}]: {message}")
+
+print(f"\nSummary: {error_count} errors, {warning_count} warnings found")
+      </code></pre>
+      <h4>
+        <a href ="../pages/lists.html">◄ Lists</a> |
+        <a href="../pages/sets.html">Sets ►</a>
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -45,5 +301,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
