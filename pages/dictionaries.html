@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python dictionaries with practical examples from real jobs. Master key-value pairs, nested data structures, and professional coding techniques for beginners.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -35,7 +36,223 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Dictionaries</h2>
-      <h3>Page Coming Soon</h3>
+      <p>Python dictionaries are one of the most versatile and powerful data structures in the language, functioning as collections of key-value pairs where each unique key maps to a specific value. Unlike lists or tuples that use numerical indices, dictionaries allow you to access data using meaningful keys such as strings, numbers, or other immutable types. This makes them incredibly intuitive for storing and retrieving related information. For example, you might create a dictionary to store employee details where the employee ID serves as the key and their personal information as the value: employee = {'emp_001': {'name': 'Sarah Johnson', 'department': 'Marketing', 'salary': 45000}}. The flexibility of dictionaries makes them indispensable for organising complex data in a way that mirrors real-world relationships.</p>
+      <p>In web development and software engineering roles, dictionaries are essential for handling JSON data, configuration settings, and API responses. When building web applications, developers frequently work with user authentication systems where dictionaries store session data, user preferences, and access permissions. For instance, a web developer might use a dictionary to manage user sessions: user_sessions = {'session_abc123': {'user_id': 'john_doe', 'login_time': '2024-03-15 09:30:00', 'permissions': ['read', 'write']}}. This structure allows for quick lookups to verify user credentials and manage access control across different parts of an application. Additionally, when integrating with third-party services or APIs, the returned data is often in dictionary format, making it straightforward to extract specific information without parsing through complex data structures.</p>
+      <p>Data analysts and scientists rely heavily on dictionaries for data cleaning, transformation, and analysis tasks. In roles involving customer data analysis or market research, dictionaries serve as lookup tables for categorising and standardising information. A data analyst might create a dictionary to map product codes to product names: product_catalogue = {'SKU001': 'Wireless Headphones', 'SKU002': 'Bluetooth Speaker', 'SKU003': 'USB Cable'}, which can then be used to enrich sales data with meaningful product descriptions. When working with pandas DataFrames, dictionaries are frequently used to rename columns, map categorical values, or create new calculated fields. For example, mapping survey responses from numerical codes to descriptive text: satisfaction_mapping = {1: 'Very Dissatisfied', 2: 'Dissatisfied', 3: 'Neutral', 4: 'Satisfied', 5: 'Very Satisfied'}.</p>
+      <p>In finance and accounting roles, dictionaries prove invaluable for managing financial calculations, currency conversions, and reporting structures. Financial analysts often use dictionaries to store exchange rates, tax rates by region, or pricing tiers for different customer segments. A treasury analyst might maintain a dictionary of current exchange rates: exchange_rates = {'USD': 1.0, 'EUR': 0.85, 'GBP': 0.73, 'JPY': 110.25} to quickly convert between currencies in financial reports. Similarly, accounting software developers use dictionaries to map account codes to account names, or to store different tax calculations based on geographic regions. This approach ensures consistency across financial calculations and makes it easier to update rates or rules without modifying core calculation logic throughout the application.</p>
+      <p>The versatility of dictionaries extends to system administration and DevOps roles, where they're used for configuration management, monitoring, and automation scripts. System administrators frequently use dictionaries to store server configurations, user permissions, and system monitoring data. For instance, a DevOps engineer might use a dictionary to manage deployment configurations across different environments: deployment_config = {'development': {'server': 'dev.company.com', 'database': 'dev_db', 'debug': True}, 'production': {'server': 'prod.company.com', 'database': 'prod_db', 'debug': False}}. This structure allows for easy switching between environments whilst maintaining clean, readable code. In monitoring applications, dictionaries can store system metrics, alert thresholds, and notification preferences, enabling administrators to quickly assess system health and respond to issues efficiently.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of the syntax of dictionaries and what they can be used for:</p>
+      <pre><code class="language-python">
+# Example 1: Creating Dictionaries - Different Methods
+employee_data = {'emp_001': 'Sarah Johnson', 'emp_002': 'Mike Chen', 'emp_003': 'Emily Davis'}  # Dict literal
+product_prices = dict([('laptop', 899.99), ('mouse', 29.99), ('keyboard', 79.99)])  # From list of tuples
+inventory = dict()  # Empty dictionary
+print(f"Employee data: {employee_data}")
+print(f"Product prices: {product_prices}")
+
+# Example 2: Adding and Updating Dictionary Elements
+user_preferences = {'theme': 'dark', 'language': 'en', 'notifications': True}
+user_preferences['timezone'] = 'UTC'  # Add new key-value pair
+user_preferences.update({'font_size': 14, 'auto_save': True})  # Add multiple elements
+user_preferences['theme'] = 'light'  # Update existing value
+print(f"User preferences: {user_preferences}")
+
+# Example 3: Customer Database Management
+customer_database = {
+    'C001': {'name': 'Alice Brown', 'email': 'alice@email.com', 'orders': 5, 'total_spent': 1250.00},
+    'C002': {'name': 'Bob Wilson', 'email': 'bob@email.com', 'orders': 3, 'total_spent': 780.50},
+    'C003': {'name': 'Carol Smith', 'email': 'carol@email.com', 'orders': 8, 'total_spent': 2100.25}
+}
+# Access nested data
+customer_id = 'C001'
+customer_name = customer_database[customer_id]['name']
+total_orders = sum(customer['orders'] for customer in customer_database.values())
+print(f"Customer {customer_id}: {customer_name}")
+print(f"Total orders across all customers: {total_orders}")
+
+# Example 4: Configuration Management for Applications
+app_config = {
+    'development': {
+        'database_url': 'localhost:5432/dev_db',
+        'debug': True,
+        'log_level': 'DEBUG',
+        'api_key': 'dev_key_123'
+    },
+    'production': {
+        'database_url': 'prod-server:5432/prod_db',
+        'debug': False,
+        'log_level': 'ERROR',
+        'api_key': 'prod_key_xyz'
+    }
+}
+environment = 'development'
+current_config = app_config[environment]
+print(f"Current environment: {environment}")
+print(f"Database URL: {current_config['database_url']}")
+print(f"Debug mode: {current_config['debug']}")
+
+# Example 5: Employee Skills and Department Mapping
+employee_skills = {
+    'john_doe': ['Python', 'SQL', 'Docker', 'AWS'],
+    'jane_smith': ['JavaScript', 'React', 'Node.js', 'MongoDB'],
+    'mike_jones': ['Java', 'Spring', 'PostgreSQL', 'Kubernetes']
+}
+skill_requirements = {'Python': 'Backend', 'JavaScript': 'Frontend', 'Java': 'Backend'}
+# Find employees with specific skills
+python_developers = [emp for emp, skills in employee_skills.items() if 'Python' in skills]
+backend_skills = [skill for skill in skill_requirements.keys() if skill_requirements[skill] == 'Backend']
+print(f"Python developers: {python_developers}")
+print(f"Backend skills: {backend_skills}")
+
+# Example 6: Inventory and Stock Management
+warehouse_inventory = {
+    'SKU001': {'name': 'Wireless Mouse', 'quantity': 150, 'price': 29.99, 'supplier': 'TechCorp'},
+    'SKU002': {'name': 'USB Keyboard', 'quantity': 75, 'price': 49.99, 'supplier': 'InputDevices Ltd'},
+    'SKU003': {'name': 'Monitor Stand', 'quantity': 25, 'price': 89.99, 'supplier': 'OfficeSupplies Inc'}
+}
+# Stock checking and alerts
+low_stock_threshold = 50
+low_stock_items = {sku: details for sku, details in warehouse_inventory.items() 
+                   if details['quantity'] < low_stock_threshold}
+total_inventory_value = sum(item['quantity'] * item['price'] for item in warehouse_inventory.values())
+print(f"Low stock items: {list(low_stock_items.keys())}")
+print(f"Total inventory value: £{total_inventory_value:.2f}")
+
+# Example 7: User Authentication and Session Management
+user_sessions = {
+    'session_abc123': {
+        'user_id': 'john_doe',
+        'login_time': '2024-03-15 09:30:00',
+        'permissions': ['read', 'write', 'delete'],
+        'last_activity': '2024-03-15 11:45:00'
+    },
+    'session_def456': {
+        'user_id': 'jane_smith',
+        'login_time': '2024-03-15 10:15:00',
+        'permissions': ['read', 'write'],
+        'last_activity': '2024-03-15 12:20:00'
+    }
+}
+# Session validation
+session_id = 'session_abc123'
+if session_id in user_sessions:
+    user_permissions = user_sessions[session_id]['permissions']
+    has_delete_access = 'delete' in user_permissions
+    print(f"Session {session_id} - Delete access: {has_delete_access}")
+    print(f"User permissions: {user_permissions}")
+
+# Example 8: Dictionary Methods - Keys, Values, Items
+sales_data = {
+    'January': 15000,
+    'February': 18000,
+    'March': 22000,
+    'April': 19000
+}
+# Get all months, values, and key-value pairs
+all_months = list(sales_data.keys())
+all_sales = list(sales_data.values())
+monthly_data = list(sales_data.items())
+average_sales = sum(sales_data.values()) / len(sales_data)
+best_month = max(sales_data, key=sales_data.get)
+print(f"Months: {all_months}")
+print(f"Average monthly sales: £{average_sales:.2f}")
+print(f"Best performing month: {best_month} (£{sales_data[best_month]})")
+
+# Example 9: Data Transformation and Mapping
+status_codes = {200: 'OK', 404: 'Not Found', 500: 'Internal Server Error', 401: 'Unauthorized'}
+api_responses = [200, 404, 200, 500, 401, 200]
+# Transform status codes to messages
+response_messages = [status_codes.get(code, 'Unknown Status') for code in api_responses]
+status_count = {}
+for code in api_responses:
+    status_count[code] = status_count.get(code, 0) + 1
+print(f"Response messages: {response_messages}")
+print(f"Status code frequency: {status_count}")
+
+# Example 10: Dictionary Comprehension and Filtering
+employee_salaries = {
+    'alice': 55000,
+    'bob': 48000,
+    'charlie': 62000,
+    'diana': 58000,
+    'eve': 45000
+}
+# Create new dictionaries using comprehension
+high_earners = {name: salary for name, salary in employee_salaries.items() if salary > 50000}
+salary_bands = {name: 'Senior' if salary > 55000 else 'Junior' for name, salary in employee_salaries.items()}
+bonus_calculations = {name: salary * 0.1 for name, salary in employee_salaries.items()}
+print(f"High earners: {high_earners}")
+print(f"Salary bands: {salary_bands}")
+print(f"Bonus calculations: {bonus_calculations}")
+
+# Example 11: Nested Dictionary Operations
+company_structure = {
+    'Engineering': {
+        'Backend': ['alice', 'bob', 'charlie'],
+        'Frontend': ['diana', 'eve'],
+        'DevOps': ['frank']
+    },
+    'Marketing': {
+        'Digital': ['grace', 'henry'],
+        'Content': ['iris']
+    },
+    'Sales': {
+        'Enterprise': ['jack', 'kate'],
+        'SMB': ['liam']
+    }
+}
+# Navigate and modify nested structure
+all_engineering_staff = []
+for team in company_structure['Engineering'].values():
+    all_engineering_staff.extend(team)
+total_employees = sum(len(team) for dept in company_structure.values() for team in dept.values())
+company_structure['Engineering']['Mobile'] = ['mike', 'nancy']  # Add new team
+print(f"All Engineering staff: {all_engineering_staff}")
+print(f"Total employees: {total_employees}")
+
+# Example 12: Database-like Operations with Dictionaries
+product_catalog = {
+    'P001': {'name': 'Laptop Pro', 'category': 'Electronics', 'price': 1299.99, 'rating': 4.5},
+    'P002': {'name': 'Office Chair', 'category': 'Furniture', 'price': 299.99, 'rating': 4.2},
+    'P003': {'name': 'Smartphone', 'category': 'Electronics', 'price': 699.99, 'rating': 4.7},
+    'P004': {'name': 'Desk Lamp', 'category': 'Furniture', 'price': 79.99, 'rating': 4.0}
+}
+# Query-like operations
+electronics = {pid: product for pid, product in product_catalog.items() 
+               if product['category'] == 'Electronics'}
+high_rated = {pid: product for pid, product in product_catalog.items() 
+              if product['rating'] >= 4.5}
+price_range = {pid: product for pid, product in product_catalog.items() 
+               if 100 <= product['price'] <= 800}
+print(f"Electronics products: {len(electronics)} items")
+print(f"High-rated products: {list(high_rated.keys())}")
+print(f"Products in £100-800 range: {list(price_range.keys())}")
+
+# Example 13: Removing and Modifying Dictionary Elements
+server_metrics = {
+    'cpu_usage': 75.5,
+    'memory_usage': 82.3,
+    'disk_usage': 45.2,
+    'network_in': 1024,
+    'network_out': 2048,
+    'uptime': 86400
+}
+# Remove elements safely
+temp_metric = server_metrics.pop('uptime', None)  # Remove and return value
+server_metrics.popitem()  # Remove last inserted item
+backup_metrics = server_metrics.copy()  # Create copy
+server_metrics.clear()  # Clear all elements
+server_metrics.update(backup_metrics)  # Restore from backup
+print(f"Removed uptime metric: {temp_metric}")
+print(f"Current metrics: {len(server_metrics)} items")
+print(f"CPU usage: {server_metrics.get('cpu_usage', 'N/A')}%")    
+      </code></pre>
+      <h4>
+        <a href="../pages/sets.html">◄ Sets</a> |
+        <a href="../pages/variables.html">Variables ►</a>
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -45,5 +262,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
