@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python variables with practical examples from UK jobs. Master strings, integers, lists & dictionaries with real-world coding applications.">
   <meta property="og:title" content="Easy Python Guide">
   
   <!-- Google tag (gtag.js) -->
@@ -21,6 +21,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -36,7 +37,126 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>Variables</h2>
-      <h3>Page Coming Soon</h3>
+      <p>Variables in Python are containers that store data values, much like labelled boxes in a warehouse. They allow programmers to give meaningful names to pieces of information, making code easier to read and maintain. Unlike some programming languages, Python doesn't require you to declare the type of variable beforehand—you simply assign a value using the equals sign. For example, employee_name = "Sarah" creates a string variable, whilst salary = 35000 creates a numeric variable. This flexibility makes Python particularly accessible for beginners and efficient for experienced developers.</p>
+      <p>In the financial sector, variables are essential for managing monetary calculations and client data. A financial analyst might use variables like monthly_income = 4500, tax_rate = 0.20, and net_pay = monthly_income * (1 - tax_rate) to calculate take-home pay. Investment firms use variables to track portfolio performance, where share_price = 150.50 and shares_owned = 1000 help calculate total investment value. Variables also store client information such as account_number = "GB29NWBK60161331926819" for UK bank accounts or risk_tolerance = "moderate" for investment profiles.</p>
+      <p>Healthcare professionals increasingly rely on variables for patient management systems and medical research. A GP surgery might use variables like patient_id = "NHS123456789", blood_pressure = 120/80, and appointment_date = "2025-07-15" to track patient records. In pharmaceutical research, variables store clinical trial data: participant_age = 45, dosage_mg = 50, and side_effects = ["drowsiness", "nausea"]. Hospital systems use variables to manage bed availability (beds_available = 12) and staff rotas (shift_pattern = "07:00-19:00"), ensuring efficient resource allocation across the NHS.</p>
+      <p>The retail and e-commerce industry depends heavily on variables for inventory management and customer data. A supermarket chain like Tesco might use variables such as product_code = "5000169086124", stock_level = 250, and reorder_point = 50 to manage their supply chain automatically. Online retailers use variables to personalise customer experiences: customer_postcode = "OX1 2JD", delivery_preference = "next_day", and basket_total = 89.99. Marketing departments utilise variables to track campaign performance, storing data like click_through_rate = 0.045 and conversion_rate = 0.032 to measure ROI.</p>
+      <p>In the education sector, variables help manage student information and academic performance tracking. A university might use variables like student_id = "UNI2025001", course_code = "CS101", and grade_percentage = 78.5 to maintain academic records. Teachers use variables in educational software to track progress: lessons_completed = 15, quiz_score = 8.5, and attendance_rate = 0.95. School administrators rely on variables for timetabling systems, where classroom = "Room A101", period = 3, and subject = "Mathematics" help organise daily schedules efficiently across different year groups.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of the syntax for variables and what can be done with them:</p>
+      <pre><code class="language-python">
+# String Variables
+name = "Alice"
+surname = "Johnson"
+city = "Manchester"
+
+# String concatenation: joins strings together
+full_name = name + " " + surname  # "Alice Johnson"
+print("Full name:", full_name)
+
+# String repetition: repeats a string multiple times
+repeated = name * 3  # "AliceAliceAlice"
+print("Repeated name:", repeated)
+
+# String length: returns the number of characters
+name_length = len(name)  # 5
+print("Length of name:", name_length)
+
+# String methods: various string operations
+uppercase = name.upper()  # "ALICE"
+lowercase = surname.lower()  # "johnson"
+print("Uppercase:", uppercase)
+print("Lowercase:", lowercase)
+
+# String formatting: inserting variables into strings
+greeting = f"Hello, my name is {name} and I live in {city}"
+print("Formatted string:", greeting)
+
+# Integer Variables
+age = 25
+year = 2025
+score = 100
+
+# Basic arithmetic operations
+next_year_age = age + 1  # 26
+birth_year = year - age  # 2000
+double_score = score * 2  # 200
+print("Next year age:", next_year_age)
+print("Birth year:", birth_year)
+print("Double score:", double_score)
+
+# Boolean Variables
+is_student = True
+has_job = False
+is_adult = age >= 18
+
+# Boolean operations
+can_vote = is_adult and age >= 18  # True
+needs_support = is_student and not has_job  # True
+print("Can vote:", can_vote)
+print("Needs support:", needs_support)
+
+# List Variables
+fruits = ["apple", "banana", "orange"]
+numbers = [1, 2, 3, 4, 5]
+mixed_list = [name, age, is_student]
+
+# List operations
+fruits.append("grape")  # Add item to end
+first_fruit = fruits[0]  # Access first item: "apple"
+list_length = len(numbers)  # 5
+print("Fruits after adding grape:", fruits)
+print("First fruit:", first_fruit)
+print("Number of items in numbers:", list_length)
+
+# Dictionary Variables
+person = {"name": "Bob", "age": 30, "city": "London"}
+grades = {"maths": 85, "english": 92, "science": 78}
+
+# Dictionary operations
+person["job"] = "Engineer"  # Add new key-value pair
+student_age = person["age"]  # Access value: 30
+all_keys = list(person.keys())  # Get all keys
+print("Person dictionary:", person)
+print("Student age:", student_age)
+print("All keys:", all_keys)
+
+# Variable reassignment and type changes
+flexible_var = 42  # Initially an integer
+print("As integer:", flexible_var, type(flexible_var))
+
+flexible_var = "Now I'm a string"  # Changed to string
+print("As string:", flexible_var, type(flexible_var))
+
+flexible_var = [1, 2, 3]  # Changed to list
+print("As list:", flexible_var, type(flexible_var))
+
+# Multiple assignment
+x, y, z = 10, 20, 30
+print("Multiple assignment - x:", x, "y:", y, "z:", z)
+
+# Swapping variables
+a, b = "first", "second"
+print("Before swap - a:", a, "b:", b)
+a, b = b, a  # Swap values
+print("After swap - a:", a, "b:", b)
+
+# Constants (by convention, use uppercase)
+PI = 3.14159
+MAX_ATTEMPTS = 3
+COMPANY_NAME = "Tech Solutions Ltd"
+
+# Using constants in calculations
+radius = 5
+circle_area = PI * radius ** 2  # 78.53975
+print("Circle area:", circle_area)
+print("Company:", COMPANY_NAME)
+      </code></pre>
+      <h4>
+        <a href ="../pages/dictionaries.html">◄ Dictionaries </a> |
+        <a href="../pages/print.html">Print Statements ►</a>
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -46,5 +166,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
