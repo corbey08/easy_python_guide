@@ -1,3 +1,6 @@
+![Easy Python Guide Homepage Screenshot](images/homepage.png)
+![Easy Python Guide Dark Mode Screenshot](images/dark-mode-page.png)
+
 📝 Description
 Easy Python Guide is a comprehensive, beginner-friendly website designed to introduce fundamental Python programming concepts. As a self-paced learning resource, it breaks down complex topics into digestible lessons, making Python accessible to absolute beginners. The site provides a clean, user-friendly interface with features like a theme switcher for personalised viewing and structured content across numerous pages, guiding users from basic syntax to more advanced concepts.
 
