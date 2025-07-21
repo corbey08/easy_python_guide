@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python comments and docstrings with practical examples. Understand the key differences and see real workplace code examples for beginners.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -40,6 +41,164 @@
       <p>The key difference between comments and docstrings lies in their scope and purpose. Comments are for explaining specific lines or small sections of code and are meant for developers who are reading through the implementation. Docstrings are for documenting the overall purpose and behaviour of larger code components and are intended for anyone who needs to use your code, including your future self. Comments answer "how" or "why" questions about the implementation, whilst docstrings answer "what" questions about functionality. Additionally, many development tools can automatically generate documentation from docstrings, making them invaluable for creating professional code documentation.</p>
       <p>In real workplace scenarios, comments are extensively used during code reviews and maintenance. For instance, a data analyst might comment their code with # Remove outliers beyond 3 standard deviations to explain a data cleaning step, or a web developer might note # TODO: Add input validation for email addresses to flag future improvements. Comments are also crucial when working with complex algorithms or business logic that might not be immediately clear to other team members. They serve as a communication tool between developers and help prevent misunderstandings about code intent.</p>
       <p>Docstrings prove their worth in professional environments when creating reusable code libraries, APIs, or any functions that will be used by multiple team members. A software engineer might write a docstring like """Connects to the customer database and retrieves order history. Parameters: customer_id (int): The unique identifier for the customer. Returns: List of dictionaries containing order details.""" This allows colleagues to understand and use the function without needing to read through its implementation. Many companies use tools like Sphinx to automatically generate professional documentation websites from these docstrings, creating comprehensive guides for their codebases. This practice is particularly important in collaborative environments where clear documentation can save hours of time and reduce errors.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of the syntax and usage of comments and docstrings:</p>
+      <pre><code class="language-python">
+"""
+Customer Management System
+This module handles customer data processing and order management
+for an e-commerce platform.
+"""
+
+import datetime
+import re
+
+class CustomerManager:
+    """
+    Manages customer data and order processing operations.
+    
+    This class provides methods for validating customer information,
+    calculating order totals, and generating customer reports.
+    """
+    
+    def __init__(self):
+        self.customers = []
+        # VAT rate set to current UK standard rate
+        self.vat_rate = 0.20
+    
+    def validate_email(self, email):
+        """
+        Validates if an email address has correct format.
+        
+        Args:
+            email (str): Email address to validate
+            
+        Returns:
+            bool: True if email format is valid, False otherwise
+            
+        Example:
+            >>> manager = CustomerManager()
+            >>> manager.validate_email("user@example.com")
+            True
+        """
+        # Basic email regex pattern - covers most common formats
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return bool(re.match(pattern, email))
+    
+    def calculate_order_total(self, items, discount_code=None):
+        """
+        Calculates the total price for an order including VAT and discounts.
+        
+        Args:
+            items (list): List of dictionaries with 'price' and 'quantity' keys
+            discount_code (str, optional): Discount code to apply
+            
+        Returns:
+            dict: Contains 'subtotal', 'vat', 'discount', and 'total' amounts
+        """
+        subtotal = 0
+        
+        # Calculate subtotal from all items
+        for item in items:
+            item_total = item['price'] * item['quantity']
+            subtotal += item_total
+        
+        # Apply discount if valid code provided
+        discount = 0
+        if discount_code == "SAVE10":
+            discount = subtotal * 0.10  # 10% discount
+        elif discount_code == "NEWCUSTOMER":
+            discount = min(subtotal * 0.15, 50.00)  # 15% off, max £50
+        
+        # Calculate VAT on discounted amount
+        discounted_subtotal = subtotal - discount
+        vat_amount = discounted_subtotal * self.vat_rate
+        final_total = discounted_subtotal + vat_amount
+        
+        return {
+            'subtotal': round(subtotal, 2),
+            'discount': round(discount, 2),
+            'vat': round(vat_amount, 2),
+            'total': round(final_total, 2)
+        }
+    
+    def generate_monthly_report(self, customers_data):
+        """
+        Generates a summary report of customer activity for the current month.
+        
+        Args:
+            customers_data (list): List of customer dictionaries with order history
+            
+        Returns:
+            dict: Monthly statistics including total orders, revenue, and top customers
+        """
+        current_month = datetime.datetime.now().month
+        current_year = datetime.datetime.now().year
+        
+        monthly_orders = []
+        total_revenue = 0
+        customer_spending = {}
+        
+        for customer in customers_data:
+            customer_id = customer['id']
+            customer_monthly_total = 0
+            
+            # Filter orders for current month
+            for order in customer.get('orders', []):
+                order_date = datetime.datetime.strptime(order['date'], '%Y-%m-%d')
+                
+                if order_date.month == current_month and order_date.year == current_year:
+                    monthly_orders.append(order)
+                    order_total = order['total']
+                    total_revenue += order_total
+                    customer_monthly_total += order_total
+            
+            # Track customer spending for identifying top customers
+            if customer_monthly_total > 0:
+                customer_spending[customer_id] = {
+                    'name': customer['name'],
+                    'total_spent': customer_monthly_total
+                }
+        
+        # Sort customers by spending to find top 5
+        top_customers = sorted(
+            customer_spending.items(), 
+            key=lambda x: x[1]['total_spent'], 
+            reverse=True
+        )[:5]
+        
+        return {
+            'month': f"{current_year}-{current_month:02d}",
+            'total_orders': len(monthly_orders),
+            'total_revenue': round(total_revenue, 2),
+            'average_order_value': round(total_revenue / len(monthly_orders), 2) if monthly_orders else 0,
+            'top_customers': top_customers
+        }
+
+# Example usage demonstrating the functions
+if __name__ == "__main__":
+    # Create an instance of the customer manager
+    manager = CustomerManager()
+    
+    # Test email validation
+    test_emails = ["valid@example.com", "invalid-email", "user@domain.co.uk"]
+    for email in test_emails:
+        print(f"Email {email} is valid: {manager.validate_email(email)}")
+    
+    # Test order calculation
+    sample_order = [
+        {'price': 25.99, 'quantity': 2},  # £51.98
+        {'price': 15.50, 'quantity': 1},  # £15.50
+        {'price': 8.99, 'quantity': 3}    # £26.97
+    ]
+    
+    order_total = manager.calculate_order_total(sample_order, "SAVE10")
+    print(f"\nOrder breakdown: {order_total}")    
+      </code></pre> 
+      <h4>
+        <a href="../pages/input.html">◄ Input Statements</a> |
+        <a href="../pages/conditional_statements.html">Conditional Statements ►</a>
+      </h4>
     </div>
   </main>
   <footer>
@@ -50,5 +209,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
