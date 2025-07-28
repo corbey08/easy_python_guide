@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python conditional statements with real-world examples from web development, data analysis & automation jobs. Complete beginner's guide with code samples.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -40,6 +41,155 @@
       <p>In web development roles, conditional statements are everywhere. A web developer might use them to check if a user is logged in before displaying certain content, or to validate form data before processing it. For instance, if user.is_authenticated: could show a personalised dashboard, whilst else: might redirect to a login page. E-commerce sites rely heavily on conditionals to apply discounts, check stock levels, or determine shipping costs based on location and item weight. These statements ensure that users see relevant content and that the website behaves appropriately under different circumstances.</p>
       <p>Data analysts and scientists use conditional statements extensively for data cleaning and analysis. They might write if pd.isna(value): to handle missing data points, or use conditions to categorise data into groups. For example, a marketing analyst could use conditionals to segment customers based on spending habits: if total_spent > 1000: assigns them to a "premium" category. Financial analysts use these statements to flag unusual transactions, calculate different tax rates based on income brackets, or trigger alerts when certain market conditions are met.</p>
       <p>In automation and systems administration, conditional statements are crucial for creating robust, self-managing systems. A system administrator might write scripts that check disk space and send alerts when storage is running low, or automatically restart services if they stop responding. DevOps engineers use conditionals in deployment scripts to handle different environments - perhaps if environment == 'production': uses different database settings than development. Even simple task automation, like organising files based on their extensions or processing emails based on their sender, relies heavily on conditional logic to make intelligent decisions about how to handle different scenarios.</p>
+      <h3>Syndax</h3>  
+      <p>Some examples of where conditional statements are used:</p>
+      <pre><code class="language-python">
+# Example 1: User authentication in a web application
+user_role = "admin"
+if user_role == "admin":
+    print("Access granted to admin panel")
+elif user_role == "moderator":
+    print("Access granted to moderation tools")
+else:
+    print("Standard user access only")
+
+# Example 2: E-commerce discount calculation
+order_total = 150.00
+customer_type = "premium"
+
+if customer_type == "premium" and order_total > 100:
+    discount = 0.15  # 15% discount
+elif order_total > 200:
+    discount = 0.10  # 10% discount for large orders
+elif order_total > 50:
+    discount = 0.05  # 5% discount for medium orders
+else:
+    discount = 0     # No discount
+
+final_price = order_total * (1 - discount)
+print(f"Final price: £{final_price:.2f}")
+
+# Example 3: Temperature control system
+current_temp = 18
+target_temp = 22
+
+if current_temp < target_temp - 2:
+    print("Heating system ON")
+elif current_temp > target_temp + 2:
+    print("Cooling system ON")
+else:
+    print("Temperature maintained")
+
+# Example 4: Data validation for user registration
+email = "user@example.com"
+password = "SecurePass123"
+age = 17
+
+if "@" not in email or "." not in email:
+    print("Invalid email address")
+elif len(password) < 8:
+    print("Password must be at least 8 characters")
+elif age < 18:
+    print("Must be 18 or older to register")
+else:
+    print("Registration successful")
+
+# Example 5: File processing based on extension
+filename = "report.pdf"
+
+if filename.endswith('.pdf'):
+    print("Processing PDF document")
+elif filename.endswith('.xlsx') or filename.endswith('.csv'):
+    print("Processing spreadsheet data")
+elif filename.endswith('.jpg') or filename.endswith('.png'):
+    print("Processing image file")
+else:
+    print("Unsupported file type")
+
+# Example 6: Database connection with error handling
+connection_status = "failed"
+retry_count = 3
+
+if connection_status == "connected":
+    print("Database ready for queries")
+elif connection_status == "failed" and retry_count > 0:
+    print(f"Retrying connection... {retry_count} attempts remaining")
+else:
+    print("Connection failed - switching to offline mode")
+
+# Example 7: Employee salary calculation with overtime
+hours_worked = 45
+hourly_rate = 15.50
+is_weekend = True
+
+if hours_worked > 40:
+    regular_pay = 40 * hourly_rate
+    overtime_hours = hours_worked - 40
+    overtime_rate = hourly_rate * 1.5
+    overtime_pay = overtime_hours * overtime_rate
+    total_pay = regular_pay + overtime_pay
+else:
+    total_pay = hours_worked * hourly_rate
+
+if is_weekend:
+    total_pay += 50  # Weekend bonus
+
+print(f"Total pay: £{total_pay:.2f}")
+
+# Example 8: System monitoring alert levels
+cpu_usage = 85
+memory_usage = 92
+disk_space = 15  # percentage free
+
+if cpu_usage > 90 or memory_usage > 95 or disk_space < 10:
+    alert_level = "CRITICAL"
+elif cpu_usage > 80 or memory_usage > 85 or disk_space < 20:
+    alert_level = "WARNING"
+else:
+    alert_level = "NORMAL"
+
+print(f"System status: {alert_level}")
+
+# Example 9: Game scoring system
+player_score = 8500
+lives_remaining = 2
+level = 5
+
+if player_score > 10000:
+    rank = "Master"
+elif player_score > 5000 and level >= 3:
+    rank = "Expert"
+elif player_score > 1000:
+    rank = "Intermediate"
+else:
+    rank = "Beginner"
+
+if lives_remaining == 0:
+    print(f"Game Over! Final rank: {rank}")
+else:
+    print(f"Current rank: {rank}, Lives: {lives_remaining}")
+
+# Example 10: Network security access control
+ip_address = "192.168.1.100"
+time_of_day = 14  # 24-hour format
+security_clearance = "high"
+
+allowed_ips = ["192.168.1.100", "192.168.1.101", "10.0.0.5"]
+
+if ip_address not in allowed_ips:
+    print("Access denied: Unauthorised IP address")
+elif time_of_day < 9 or time_of_day > 17:
+    if security_clearance != "high":
+        print("Access denied: Outside business hours")
+    else:
+        print("After-hours access granted for high clearance")
+else:
+    print("Access granted")
+      </code></pre>
+      <h4>
+        <a href="../pages/comments.html">◄ Comments and Docstrings</a> |
+        <a href="../pages/for_loops.html">For Loops ►</a>
+      </h4>
     </div>
   </main>
   <footer>
@@ -50,5 +200,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
