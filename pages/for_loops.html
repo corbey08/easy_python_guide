@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn Python for loops with 10 real-world examples from marketing, finance, HR & more. Beginner-friendly guide with practical code samples.">
   <meta property="og:title" content="Easy Python Guide">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <!-- Google tag (gtag.js) -->
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -40,6 +41,191 @@
       <p>In data analysis roles, for loops are essential for processing large datasets. A financial analyst might use them to calculate monthly returns for hundreds of stocks, iterating through each company's data to perform the same calculation. Marketing professionals working with customer data could loop through email lists to personalise messages or segment customers based on their purchase history. The loop handles the repetitive work whilst ensuring each record receives the same treatment, reducing errors and saving enormous amounts of time.</p>
       <p>Software developers and web developers rely heavily on for loops for various tasks. They might loop through user inputs to validate form data, iterate through database records to generate reports, or process files in a directory for backup operations. Game developers use loops to update the positions of multiple characters or objects on screen, whilst mobile app developers might loop through notification lists to display them to users. The versatility means they're applicable across virtually every programming project.</p>
       <p>Even in non-technical roles that involve Python scripting, for loops prove invaluable. Administrative staff might use them to rename hundreds of files systematically, teachers could loop through student grades to calculate class averages, and researchers might iterate through survey responses to extract specific information. The key advantage is automation: instead of manually performing the same task repeatedly, you write the loop once and let Python handle the repetition, making your work more efficient and less prone to human error.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of how for loops are used:</p>
+      <pre><code class="language-python">
+# 1. MARKETING: Personalising email campaigns
+customer_list = [
+    {"name": "Sarah", "last_purchase": "trainers", "spend": 89.99},
+    {"name": "James", "last_purchase": "jacket", "spend": 159.50},
+    {"name": "Emma", "last_purchase": "dress", "spend": 45.00}
+]
+
+for customer in customer_list:
+    email_content = f"Hi {customer['name']}, we have new {customer['last_purchase']} similar to your £{customer['spend']:.2f} purchase!"
+    print(f"Sending email to {customer['name']}: {email_content}")
+
+print("\n" + "="*60 + "\n")
+
+# 2. FINANCE: Calculating portfolio returns
+stock_prices = {"AAPL": [150, 155, 148], "MSFT": [300, 305, 310], "GOOGL": [2500, 2480, 2520]}
+
+for stock, prices in stock_prices.items():
+    initial_price = prices[0]
+    final_price = prices[-1]
+    return_percentage = ((final_price - initial_price) / initial_price) * 100
+    print(f"{stock}: {return_percentage:.2f}% return")
+
+print("\n" + "="*60 + "\n")
+
+# 3. EDUCATION: Processing student grades
+student_grades = [85, 92, 78, 88, 95, 82, 90, 87]
+total_marks = 0
+grade_count = 0
+
+for grade in student_grades:
+    total_marks += grade
+    grade_count += 1
+    if grade >= 90:
+        print(f"Excellent work: {grade}%")
+    elif grade >= 80:
+        print(f"Good effort: {grade}%")
+    else:
+        print(f"Needs improvement: {grade}%")
+
+average = total_marks / grade_count
+print(f"Class average: {average:.1f}%")
+
+print("\n" + "="*60 + "\n")
+
+# 4. RETAIL: Inventory management and low stock alerts
+inventory = {
+    "Laptops": 5,
+    "Phones": 2,
+    "Tablets": 15,
+    "Headphones": 3,
+    "Keyboards": 25
+}
+
+for product, quantity in inventory.items():
+    if quantity <= 5:
+        print(f"LOW STOCK ALERT: {product} - Only {quantity} remaining")
+    else:
+        print(f"{product}: {quantity} in stock")
+
+print("\n" + "="*60 + "\n")
+
+# 5. HUMAN RESOURCES: Processing employee data for payroll
+employees = [
+    {"name": "Alice Johnson", "hours": 40, "rate": 25.50},
+    {"name": "Bob Smith", "hours": 35, "rate": 22.00},
+    {"name": "Carol Davis", "hours": 42, "rate": 28.75}
+]
+
+total_payroll = 0
+for employee in employees:
+    regular_hours = min(employee["hours"], 40)
+    overtime_hours = max(employee["hours"] - 40, 0)
+    
+    regular_pay = regular_hours * employee["rate"]
+    overtime_pay = overtime_hours * employee["rate"] * 1.5
+    total_pay = regular_pay + overtime_pay
+    
+    total_payroll += total_pay
+    print(f"{employee['name']}: £{total_pay:.2f} (including £{overtime_pay:.2f} overtime)")
+
+print(f"Total payroll cost: £{total_payroll:.2f}")
+
+print("\n" + "="*60 + "\n")
+
+# 6. HEALTHCARE: Patient appointment scheduling
+appointments = [
+    {"patient": "Mr. Williams", "time": "09:00", "type": "Check-up"},
+    {"patient": "Mrs. Brown", "time": "09:30", "type": "Blood test"},
+    {"patient": "Ms. Taylor", "time": "10:00", "type": "Consultation"},
+    {"patient": "Mr. Jones", "time": "10:30", "type": "Follow-up"}
+]
+
+for appointment in appointments:
+    print(f"{appointment['time']}: {appointment['patient']} - {appointment['type']}")
+    # In real system, this might send SMS reminders or update electronic records
+
+print("\n" + "="*60 + "\n")
+
+# 7. LOGISTICS: Processing delivery routes
+delivery_addresses = [
+    "123 High Street, London",
+    "456 Park Lane, Manchester", 
+    "789 Queen Street, Birmingham",
+    "321 King Road, Liverpool"
+]
+
+estimated_times = []
+for i, address in enumerate(delivery_addresses, 1):
+    estimated_time = 9.0 + (i * 0.5)  # Starting at 9am, 30 mins per delivery
+    estimated_times.append(estimated_time)
+    print(f"Delivery {i}: {address} - Estimated arrival: {estimated_time:.1f}:00")
+
+print("\n" + "="*60 + "\n")
+
+# 8. SOCIAL MEDIA: Content moderation
+user_posts = [
+    "Had a great day at the beach!",
+    "Check out my new recipe blog",
+    "This product is amazing, buy now!",
+    "Lovely weather today ☀️",
+    "URGENT: Make money fast!!!"
+]
+
+flagged_posts = []
+for post in user_posts:
+    # Simple content filtering (real systems would be much more sophisticated)
+    spam_keywords = ["buy now", "make money fast", "urgent"]
+    is_spam = any(keyword.lower() in post.lower() for keyword in spam_keywords)
+    
+    if is_spam:
+        flagged_posts.append(post)
+        print(f"FLAGGED: '{post}' - Requires manual review")
+    else:
+        print(f"APPROVED: '{post}'")
+
+print(f"\nTotal flagged posts: {len(flagged_posts)}")
+
+print("\n" + "="*60 + "\n")
+
+# 9. RESEARCH: Survey data analysis
+survey_responses = [5, 4, 3, 5, 2, 4, 5, 3, 4, 5, 2, 3, 4, 5, 4]
+response_counts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+
+for response in survey_responses:
+    response_counts[response] += 1
+
+print("Survey Results (1=Very Poor, 5=Excellent):")
+for rating, count in response_counts.items():
+    percentage = (count / len(survey_responses)) * 100
+    bar = "█" * count  # Visual representation
+    print(f"Rating {rating}: {count:2d} responses ({percentage:4.1f}%) {bar}")
+
+print("\n" + "="*60 + "\n")
+
+# 10. SYSTEM ADMINISTRATION: File processing and backup
+import os
+from datetime import datetime
+
+# Simulated file list (in real scenario, you'd use os.listdir())
+files_to_backup = [
+    "quarterly_report.xlsx",
+    "customer_database.csv", 
+    "product_images.zip",
+    "meeting_notes.docx",
+    "financial_data.pdf"
+]
+
+backup_log = []
+for filename in files_to_backup:
+    # Simulate file backup process
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    backup_name = f"backup_{timestamp.replace(':', '-').replace(' ', '_')}_{filename}"
+    
+    print(f"Backing up: {filename} -> {backup_name}")
+    backup_log.append({"original": filename, "backup": backup_name, "time": timestamp})
+
+print(f"\nBackup completed: {len(backup_log)} files processed")
+      </code></pre>
+      <h4>
+        <a href="../pages/conditional_statements.html">◄ Conditional Statements</a> |
+        <a href="../pages/while_loops.html">While Loops ►</a>
+      </h4>
     </div>
   </main>
   <footer>
@@ -50,5 +236,8 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
+
