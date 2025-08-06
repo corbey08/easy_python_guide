@@ -5,7 +5,7 @@
   <meta name="author" content="Greg Corbett">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner's guide on where to start when learning coding in general and specifically Python focusing on key programming principles with real world examples.">
+  <meta name="description" content="Learn while loops in programming with 10 real-world examples from web development, finance, gaming & data analysis jobs. Perfect for beginners.">
   <meta property="og:title" content="Easy Python Guide">
     <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDY34NCGL3"></script>
@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -35,7 +36,194 @@
     <div class="main-content">  
       <h1>Easy<br>&nbsp&nbspPython<br>&nbsp&nbsp&nbsp&nbspGuide</h1>
       <h2>While Loops</h2>
-      <h3>Page Coming Soon</h3>
+      <p>A while loop is another fundamental programming construct that allows your code to repeat a set of instructions as long as a specific condition remains true. Think of it like giving someone directions that include "keep walking straight until you reach the traffic lights" - the person will continue walking (the repeated action) until they meet the condition of reaching the traffic lights. In programming terms, the while loop evaluates a condition before each iteration, and if that condition is true, it executes the code inside the loop block. This process continues until the condition becomes false, at which point the program moves on to the next instruction after the loop.</p>
+      <p>The basic structure of a while loop is quite straightforward. You start with the keyword "while" followed by a condition in parentheses, then place the code you want to repeat inside curly braces. For example, you might write while (counter < 10) followed by code that increments the counter and performs some task. The key thing to remember is that something inside the loop must eventually change the condition to false, otherwise you'll create an infinite loop that never stops running. This is why most while loops include a statement that modifies the variable being tested in the condition, such as adding 1 to a counter or updating a status flag.</p>
+      <p>In real-world software development jobs, while loops are incredibly useful for handling situations where you don't know in advance how many times you need to repeat an operation. Web developers often use them when processing user input - for instance, continuously asking a user to enter a valid email address until they provide one that meets the required format. Database administrators and backend developers frequently employ while loops when reading through records in a database, processing each row of results until there are no more records to handle. Game developers use them extensively for the main game loop that keeps running until the player quits or the game ends.</p>
+      <p>While loops are particularly valuable in data processing roles, where you might need to read through files of unknown size or process streaming data. A data analyst might use a while loop to clean a dataset by repeatedly removing invalid entries until no more problematic data remains. System administrators often write scripts with while loops to monitor server performance, continuously checking system metrics until certain thresholds are met or exceeded. In automated testing jobs, while loops can simulate user behaviour by repeatedly clicking buttons or entering data until a specific response is received from the application being tested.</p>
+      <p>Understanding while loops is essential because they represent a core programming concept that appears in virtually every programming language and job role that involves coding. Whether you're working as a software engineer building mobile apps, a DevOps engineer writing deployment scripts, or a financial analyst creating automated reports, you'll find while loops invaluable for tasks that require repetition with an unknown endpoint. They're particularly powerful when combined with user input, file processing, or any scenario where your program needs to respond dynamically to changing conditions rather than simply repeating a fixed number of times.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of real usage of while loops:</p>
+      <pre><code class="language-python">
+# 1. CUSTOMER SERVICE - Processing support tickets until queue is empty
+import time
+
+def process_support_queue():
+    tickets_remaining = get_ticket_count()  # Imagine this returns current queue size
+    while tickets_remaining > 0:
+        ticket = get_next_ticket()
+        process_ticket(ticket)
+        tickets_remaining = get_ticket_count()
+        print(f"Processed ticket. {tickets_remaining} tickets remaining.")
+
+# 2. WEB SCRAPING - Continue scraping pages until no "Next" button exists
+def scrape_product_catalogue():
+    current_page = 1
+    has_next_page = True
+    
+    while has_next_page:
+        products = scrape_page(current_page)
+        save_products_to_database(products)
+        has_next_page = check_for_next_button()
+        current_page += 1
+        time.sleep(2)  # Respectful scraping delay
+
+# 3. FINANCIAL ANALYSIS - Monitor stock price until target reached
+def monitor_stock_price(symbol, target_price):
+    current_price = get_stock_price(symbol)
+    
+    while current_price < target_price:
+        print(f"{symbol}: £{current_price} (Target: £{target_price})")
+        time.sleep(300)  # Check every 5 minutes
+        current_price = get_stock_price(symbol)
+    
+    send_alert(f"{symbol} has reached target price of £{target_price}!")
+
+# 4. GAME DEVELOPMENT - Main game loop running until player quits
+def game_main_loop():
+    game_running = True
+    player_health = 100
+    
+    while game_running and player_health > 0:
+        handle_user_input()
+        update_game_objects()
+        check_collisions()
+        render_frame()
+        
+        if player_pressed_quit() or level_completed():
+            game_running = False
+
+# 5. DATA PROCESSING - Read large CSV file until end reached
+def process_large_dataset(filename):
+    file_handle = open(filename, 'r')
+    line = file_handle.readline()
+    
+    while line:  # Continue until empty string (end of file)
+        data = parse_csv_line(line)
+        if validate_data(data):
+            insert_into_database(data)
+        line = file_handle.readline()
+    
+    file_handle.close()
+
+# 6. SYSTEM ADMINISTRATION - Server health monitoring
+def monitor_server_health():
+    server_healthy = True
+    
+    while server_healthy:
+        cpu_usage = get_cpu_usage()
+        memory_usage = get_memory_usage()
+        disk_space = get_disk_space()
+        
+        if cpu_usage > 90 or memory_usage > 85 or disk_space < 10:
+            send_admin_alert("Server performance warning!")
+            server_healthy = False
+        
+        time.sleep(60)  # Check every minute
+
+# 7. E-COMMERCE - Retry payment processing until successful or max attempts
+def process_payment(order_id, payment_details):
+    payment_successful = False
+    attempts = 0
+    max_attempts = 3
+    
+    while not payment_successful and attempts < max_attempts:
+        try:
+            response = charge_credit_card(payment_details)
+            if response.status == "approved":
+                payment_successful = True
+                update_order_status(order_id, "paid")
+        except PaymentException as e:
+            attempts += 1
+            log_payment_error(e)
+            time.sleep(2)  # Brief delay before retry
+
+# 8. USER INTERFACE - Input validation until user provides correct format
+def get_valid_email():
+    email = ""
+    valid_email = False
+    
+    while not valid_email:
+        email = input("Please enter your email address: ")
+        if "@" in email and "." in email and len(email) > 5:
+            valid_email = True
+        else:
+            print("Invalid email format. Please try again.")
+    
+    return email
+
+# 9. AUTOMATED TESTING - Keep testing until all test cases pass
+def run_regression_tests():
+    failed_tests = run_test_suite()
+    
+    while len(failed_tests) > 0:
+        print(f"{len(failed_tests)} tests failed. Re-running failed tests...")
+        
+        # Re-run only the failed tests
+        for test in failed_tests:
+            result = run_individual_test(test)
+            if result == "PASS":
+                failed_tests.remove(test)
+        
+        if len(failed_tests) > 0:
+            time.sleep(10)  # Wait before retry
+
+# 10. MARKETING AUTOMATION - Send emails until target engagement reached
+def email_campaign_automation():
+    emails_sent = 0
+    open_rate = 0.0
+    target_opens = 1000
+    
+    while open_rate < target_opens and emails_sent < 10000:
+        batch = get_next_email_batch(100)
+        send_email_batch(batch)
+        emails_sent += len(batch)
+        
+        time.sleep(3600)  # Wait 1 hour for opens to register
+        total_opens = get_campaign_opens()
+        open_rate = (total_opens / emails_sent) * 100
+        
+        print(f"Sent: {emails_sent}, Opens: {total_opens}, Rate: {open_rate:.1f}%")
+
+# Helper functions (these would be implemented based on your specific systems)
+def get_ticket_count(): return 5  # Placeholder
+def get_next_ticket(): return {"id": 123, "issue": "Login problem"}
+def process_ticket(ticket): pass
+def scrape_page(page): return [{"name": "Product", "price": "£10"}]
+def save_products_to_database(products): pass
+def check_for_next_button(): return True
+def get_stock_price(symbol): return 150.0
+def send_alert(message): print(f"ALERT: {message}")
+def handle_user_input(): pass
+def update_game_objects(): pass
+def check_collisions(): pass
+def render_frame(): pass
+def player_pressed_quit(): return False
+def level_completed(): return False
+def parse_csv_line(line): return {"col1": "data"}
+def validate_data(data): return True
+def insert_into_database(data): pass
+def get_cpu_usage(): return 75
+def get_memory_usage(): return 60
+def get_disk_space(): return 20
+def send_admin_alert(message): print(f"ADMIN ALERT: {message}")
+def charge_credit_card(details): 
+    class Response: 
+        status = "approved"
+    return Response()
+def update_order_status(order_id, status): pass
+def log_payment_error(error): pass
+class PaymentException(Exception): pass
+def run_test_suite(): return ["test_login", "test_checkout"]
+def run_individual_test(test): return "PASS"
+def get_next_email_batch(size): return [f"email{i}@test.com" for i in range(size)]
+def send_email_batch(batch): pass
+def get_campaign_opens(): return 500    
+      </code></pre>
+      <h4>
+        <a href="../pages/for_loops.html">◄ For Loops</a> |
+        <a href="../pages/functions.html">Functions ►</a>
+      </h4>
+    </div>
   </main>
   <footer>
     <p>© 2025 Easy Python Guide. All Rights Reserved.</p>
@@ -45,5 +233,7 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
