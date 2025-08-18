@@ -28,7 +28,7 @@ const sidebarHTML = `
       <a href="${isHomePage ? 'pages/' : ''}for_loops.html">For Loops</a>
       <a href="${isHomePage ? 'pages/' : ''}while_loops.html">While Loops</a>
       <a href="${isHomePage ? 'pages/' : ''}functions.html">Functions</a>
-      <a href="${isHomePage ? 'pages/' : ''}classes.html">Classes🔜</a>
+      <a href="${isHomePage ? 'pages/' : ''}classes.html">Classes</a>
       <a href="${isHomePage ? 'pages/' : ''}modules.html">Modules and Packages🔜</a>
       <a href="${isHomePage ? 'pages/' : ''}guis.html">User Interfaces🔜</a>
     </div>
@@ -108,6 +108,7 @@ function toggleSidebar() {
     console.error('Sidebar element not found');
   }
 }
+
 
 
 
