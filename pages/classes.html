@@ -20,6 +20,7 @@
   <link id="lightTheme" rel="stylesheet" href="../css/styles-light.css">
   <link id="darkTheme" rel="stylesheet" href="../css/styles-dark.css" disabled>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link id="prismTheme" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
   <style>
     body {font-family: 'Nunito Sans', Arial, sans-serif;}
         .main-content {
@@ -42,6 +43,280 @@
       <p>Here's how you might create instances (objects) from your class: once you've defined a class, you create objects by calling the class name like a function and passing any required arguments. For example, if you have a Person class, you might write person1 = Person("Alice", 25) to create a new person object. You can then access the object's attributes using dot notation, like person1.name, and call its methods, such as person1.introduce().</p>
       <p>One of the main advantages of using classes is that they help organise your code and make it more reusable. Instead of having separate variables and functions scattered throughout your program, you can group related data and functionality together within a class. This makes your code easier to understand, maintain, and debug. Additionally, you can create multiple objects from the same class, each with their own data, without having to duplicate code.</p>
       <p>Classes also support more advanced concepts like inheritance, where you can create new classes based on existing ones, inheriting their attributes and methods whilst adding new functionality. This allows you to build hierarchies of related classes and avoid repeating code. For beginners, start with simple classes that group related data and functions together, and as you become more comfortable with the concept, you can explore these more advanced features to write even more efficient and organised code.</p>
+      <h3>Syntax</h3>
+      <p>Some examples of the syntax for classes:</p>
+      <pre><code class="language-python">
+# 1. E-COMMERCE: Product Management System
+class Product:
+    def __init__(self, name, price, stock_quantity, category):
+        self.name = name
+        self.price = price
+        self.stock_quantity = stock_quantity
+        self.category = category
+    
+    def update_stock(self, quantity_sold):
+        self.stock_quantity -= quantity_sold
+        
+    def apply_discount(self, percentage):
+        self.price = self.price * (1 - percentage / 100)
+
+# Usage: Managing thousands of products on Amazon, eBay, etc.
+laptop = Product("Gaming Laptop", 999.99, 50, "Electronics")
+laptop.apply_discount(10)  # Apply 10% discount
+
+
+# 2. BANKING: Customer Account Management
+class BankAccount:
+    def __init__(self, account_number, customer_name, balance=0):
+        self.account_number = account_number
+        self.customer_name = customer_name
+        self.balance = balance
+        self.transaction_history = []
+    
+    def deposit(self, amount):
+        self.balance += amount
+        self.transaction_history.append(f"Deposited £{amount}")
+    
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+            self.transaction_history.append(f"Withdrew £{amount}")
+        else:
+            print("Insufficient funds")
+
+# Usage: Managing millions of customer accounts in banks
+customer_account = BankAccount("12345678", "John Smith", 1000)
+
+
+# 3. HEALTHCARE: Patient Records Management
+class Patient:
+    def __init__(self, patient_id, name, age, medical_conditions=None):
+        self.patient_id = patient_id
+        self.name = name
+        self.age = age
+        self.medical_conditions = medical_conditions or []
+        self.appointments = []
+    
+    def add_appointment(self, date, doctor, notes=""):
+        appointment = {"date": date, "doctor": doctor, "notes": notes}
+        self.appointments.append(appointment)
+    
+    def add_medical_condition(self, condition):
+        self.medical_conditions.append(condition)
+
+# Usage: Hospital management systems, GP surgeries
+patient = Patient("P001", "Sarah Johnson", 35, ["Diabetes"])
+
+
+# 4. EDUCATION: Student Management System
+class Student:
+    def __init__(self, student_id, name, course, year):
+        self.student_id = student_id
+        self.name = name
+        self.course = course
+        self.year = year
+        self.grades = {}
+    
+    def add_grade(self, subject, grade):
+        self.grades[subject] = grade
+    
+    def calculate_average(self):
+        if self.grades:
+            return sum(self.grades.values()) / len(self.grades)
+        return 0
+
+# Usage: University systems, school management platforms
+student = Student("S12345", "Emma Wilson", "Computer Science", 2)
+
+
+# 5. LOGISTICS: Package Tracking System
+class Package:
+    def __init__(self, tracking_number, sender, recipient, weight):
+        self.tracking_number = tracking_number
+        self.sender = sender
+        self.recipient = recipient
+        self.weight = weight
+        self.status = "Processing"
+        self.location_history = []
+    
+    def update_location(self, location):
+        self.location_history.append(location)
+    
+    def update_status(self, new_status):
+        self.status = new_status
+
+# Usage: Royal Mail, DHL, UPS tracking systems
+package = Package("TN123456789", "London Warehouse", "Manchester Office", 2.5)
+
+
+# 6. HUMAN RESOURCES: Employee Management
+class Employee:
+    def __init__(self, employee_id, name, department, salary, start_date):
+        self.employee_id = employee_id
+        self.name = name
+        self.department = department
+        self.salary = salary
+        self.start_date = start_date
+        self.performance_reviews = []
+    
+    def give_raise(self, percentage):
+        self.salary = self.salary * (1 + percentage / 100)
+    
+    def add_performance_review(self, review_date, rating, comments):
+        review = {"date": review_date, "rating": rating, "comments": comments}
+        self.performance_reviews.append(review)
+
+# Usage: Corporate HR systems, payroll management
+employee = Employee("E001", "David Brown", "Engineering", 45000, "2023-01-15")
+
+
+# 7. GAMING: Character and Game State Management
+class GameCharacter:
+    def __init__(self, name, character_class, level=1):
+        self.name = name
+        self.character_class = character_class
+        self.level = level
+        self.health = 100
+        self.experience = 0
+        self.inventory = []
+    
+    def gain_experience(self, exp_points):
+        self.experience += exp_points
+        if self.experience >= self.level * 100:  # Level up condition
+            self.level_up()
+    
+    def level_up(self):
+        self.level += 1
+        self.health += 20
+        print(f"{self.name} leveled up to {self.level}!")
+
+# Usage: Video game development, MMORPGs, mobile games
+character = GameCharacter("Warrior123", "Paladin")
+
+
+# 8. REAL ESTATE: Property Management
+class Property:
+    def __init__(self, address, property_type, price, bedrooms, bathrooms):
+        self.address = address
+        self.property_type = property_type
+        self.price = price
+        self.bedrooms = bedrooms
+        self.bathrooms = bathrooms
+        self.is_available = True
+        self.viewing_appointments = []
+    
+    def schedule_viewing(self, date, client_name):
+        if self.is_available:
+            self.viewing_appointments.append({"date": date, "client": client_name})
+    
+    def mark_as_sold(self):
+        self.is_available = False
+
+# Usage: Estate agent systems, property websites like Rightmove
+house = Property("123 Oak Street, London", "Terraced House", 450000, 3, 2)
+
+
+# 9. AUTOMOTIVE: Vehicle Service Management
+class Vehicle:
+    def __init__(self, registration, make, model, year, owner):
+        self.registration = registration
+        self.make = make
+        self.model = model
+        self.year = year
+        self.owner = owner
+        self.mileage = 0
+        self.service_history = []
+    
+    def add_service_record(self, date, mileage, service_type, cost):
+        service = {
+            "date": date,
+            "mileage": mileage,
+            "service_type": service_type,
+            "cost": cost
+        }
+        self.service_history.append(service)
+        self.mileage = mileage
+    
+    def is_due_mot(self):
+        # MOT required annually after 3 years
+        return self.year <= 2021  # Simplified logic
+
+# Usage: Garage management systems, MOT centres, car dealerships
+car = Vehicle("AB12 CDE", "Ford", "Focus", 2020, "Jane Doe")
+
+
+# 10. MEDIA/CONTENT: Content Management System
+class Article:
+    def __init__(self, title, author, content, category):
+        self.title = title
+        self.author = author
+        self.content = content
+        self.category = category
+        self.publication_date = None
+        self.is_published = False
+        self.view_count = 0
+        self.tags = []
+    
+    def publish(self, publication_date):
+        self.publication_date = publication_date
+        self.is_published = True
+    
+    def add_view(self):
+        self.view_count += 1
+    
+    def add_tags(self, tag_list):
+        self.tags.extend(tag_list)
+
+# Usage: Newspaper websites, blogs, content management systems
+article = Article("Python Classes Explained", "Tech Writer", "Content here...", "Technology")
+
+# Example of creating multiple instances and using them
+print("=== Real-World Usage Examples ===")
+
+# Create multiple products for an online shop
+products = [
+    Product("iPhone 15", 799, 100, "Electronics"),
+    Product("Coffee Mug", 12.99, 500, "Home"),
+    Product("Running Shoes", 89.99, 75, "Sports")
+]
+
+# Apply bulk discount to electronics
+for product in products:
+    if product.category == "Electronics":
+        product.apply_discount(5)  # 5% discount on electronics
+        print(f"{product.name}: £{product.price:.2f}")
+
+# Create and manage multiple bank accounts
+accounts = [
+    BankAccount("ACC001", "Alice Smith", 5000),
+    BankAccount("ACC002", "Bob Jones", 2500),
+    BankAccount("ACC003", "Carol Williams", 10000)
+]
+
+# Process transactions
+accounts[0].withdraw(500)
+accounts[1].deposit(1000)
+print(f"Alice's balance: £{accounts[0].balance}")
+print(f"Bob's balance: £{accounts[1].balance}")
+
+# Manage a fleet of vehicles
+vehicle_fleet = [
+    Vehicle("AA11 AAA", "Ford", "Transit", 2019, "Delivery Co Ltd"),
+    Vehicle("BB22 BBB", "Mercedes", "Sprinter", 2020, "Logistics Ltd"),
+    Vehicle("CC33 CCC", "Volkswagen", "Crafter", 2021, "Transport Solutions")
+]
+
+# Check which vehicles need MOT
+for vehicle in vehicle_fleet:
+    if vehicle.is_due_mot():
+        print(f"{vehicle.registration} ({vehicle.make} {vehicle.model}) needs MOT")
+    else:
+        print(f"{vehicle.registration} MOT not yet due")
+      </code></pre>
+      <h4>
+        <a href="../pages/functions.html">◄ Functions</a> |
+        <a href="../pages/modules.html">Modules and Packages ►</a>
+      </h4>
     </div>
   </main>
   <footer>
@@ -52,7 +327,10 @@
     </p>    
   </footer>
   <script src="../js/sidebar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
 </html>
+
 
 
